@@ -1,5 +1,5 @@
 // server.js
-require('.env').config(); // Load the .env file
+require('dotenv').config(); // Load the .env file
 
 const express = require('express');
 const axios = require('axios');
@@ -28,8 +28,8 @@ app.get('/weather/:city', async (req, res) => {
       condition: weather.weather[0].description,
     };
 
-    console.log(output);
-    res.json(output);
+    console.log(output); // log to console for quick testing
+    res.json(output); // also send to frontend if needed
   } catch (error) {
     console.error('Error fetching weather:', error.message);
     res.status(500).json({ error: 'Failed to fetch weather data' });
