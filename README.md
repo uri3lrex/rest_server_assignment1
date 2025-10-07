@@ -56,6 +56,7 @@ weather-app/
 ## Documentation: 
 
 - [How to use/test the weather map API](https://openweathermap.org/current)
+- [Article outlining the use of Node.js to host a weather app](https://medium.com/@lokavarapusuryanandini/node-js-weather-app-real-time-weather-updates-from-openweather-api-5c232d0fd645)
 - [Video reference](https://youtu.be/D32qawkUxF8?si=4thgwuseMRPn-rPS)
 - [Axios Docs](https://axios-http.com/docs/intro)
 - [NPM Axios install](https://www.npmjs.com/package/axios)
