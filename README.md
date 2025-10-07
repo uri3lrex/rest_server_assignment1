@@ -1,3 +1,61 @@
 # Node.js based REST server with a Vue Front-end using local computing environment
 
-### Ass
+### Internet Applications: Assignment 1
+- Currently in week 4.
+
+## The rough project architecture:
+
+```
+weather-app/
+│
+├── backend/                         ← Node.js REST API (your Express server)
+│   ├── server.js                    ← main server file (handles routes & logic)
+|   ├── test.js                      ← my testing js file when I want to get experimental in the TEST branch
+│   ├── routes/                      ← possible routes??
+│   │   └── weatherRoutes.js         ← not sure
+│   ├── .env                         ← contains my OPENWEATHER_API_KEY
+│   ├── .gitignore                   ← hides .env and node_modules
+│   ├── package.json
+│   ├── package-lock.json
+│   └── node_modules/
+│
+├── frontend/                        ← Vue.js front-end
+│   ├── src/
+│   │   ├── App.vue                  ← main app wrapper
+│   │   ├── main.js                  ← Vue entry file
+│   │   ├── components/
+│   │   │   ├── WeatherCard.vue      ← shows weather info (city, temp, etc.)
+│   │   │   └── SearchBar.vue        ← input for city name
+│   │   └── services/
+│   │       └── api.js               ← calls my REST API (axios) ??? help???
+│   ├── public/
+│   │   └── index.html
+│   ├── package.json
+│   ├── vite.config.js (or vue.config.js)
+│   └── node_modules/
+│
+├── docs/                            ← Documentation for your report
+│   ├── README.md                        ← short project overview & setup map for now.. other docs to be added possibly
+```
+
+## Week 4 To-Do List
+- [x] get weather API key (2 calls so far??): free for 60 calls per day. worth it.
+- [ ] Vue technology setup: as per the assignment's requirement
+- [ ] Connect front and back (Possibly through axious??): convenient http client
+- [ ] Display results : render data
+- [ ] Style the appp: setting up the website through the html/css/js wombocombo
+
+## Week 5 To-Do List
+- [ ] Try to handle errors and edge cases
+- [ ] add icons. design icons maybe
+- [ ] test latency?? validate JSON output structure
+- [ ] Optional stuff
+- [ ] add more comments
+- [ ] Run a manual test flow
+
+## Documentation: 
+
+- [How to use/test the weather map API](https://openweathermap.org/current)
+- [Video reference](https://youtu.be/D32qawkUxF8?si=4thgwuseMRPn-rPS)
+- [Axios Docs](https://axios-http.com/docs/intro)
+- [NPM Axios install](https://www.npmjs.com/package/axios)
