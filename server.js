@@ -28,8 +28,8 @@ app.get('/weather/:city', async (req, res) => {
       condition: weather.weather[0].description,
     };
 
-    console.log(output); // log to console for quick testing
-    res.json(output); // also send to frontend if needed
+    console.log(output); 
+    res.json(output); 
   } catch (error) {
     console.error('Error fetching weather:', error.message);
     res.status(500).json({ error: 'Failed to fetch weather data' });
