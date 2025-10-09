@@ -45,6 +45,9 @@ weather-app/
 - [x] Connect front and back (Possibly through axious??): convenient http client. Paired with this I just simply connected it by running it on the same port.
 - [x] Display results : render data for the current day
 - [ ] Display results : with a deliberate forecast so need to add another route to what was added earlier.
+- [ ] Packing
+- [ ] Temperature
+- [ ] Summary table
 - [ ] Update the sketch architecture in final
 - [ ] Style the appp: setting up the website through the html/css/js wombocombo
 
