@@ -60,3 +60,5 @@ weather-app/
 - [Video reference](https://youtu.be/D32qawkUxF8?si=4thgwuseMRPn-rPS)
 - [Axios Docs](https://axios-http.com/docs/intro)
 - [NPM Axios install](https://www.npmjs.com/package/axios)
+- [Vue documentation](https://vuejs.org/guide/introduction.html)
+- [Vue.js directives](https://vueschool.io/articles/vuejs-tutorials/vue-js-directives-a-beginners-guide/)
