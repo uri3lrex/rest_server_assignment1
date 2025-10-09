@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+</head>
+<body>
+     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <div id="app">
+        <h1>Welcome to my Weather App!</h1>
+        Please enter the city.<br>
+        City: <input v-model="city"><br>
+        <button @click="GetCity">Find my weather!</button>
+        at {{city}}
+        <br>Latest City you searched was: {{cities}}
+        <span v-if="history.length>0">
+            <hr>
+            <h1>History of Cities generated</h1>
+            <ul>
+                <li v-for="Places in history">{{Places}}</li>
+            </ul>
+        </span>
+    </div>
+
+    <script>
+        var app= new Vue({
+            el:'#app',
+            data:{
+                city: Dublin
+            },
+            methods: {
+                GetCity : getCity
+            }
+        })
+
+        function getCity(){
+            console.log("getCity called!")
+             let prom = fetch("http://localhost:5500/random/" + this.city)
+            prom
+            .then(response => response.json())
+            .then(response => {
+                this.random = response.result
+                this.history.push(response.result)
+            })
+        }
+    </script>
+    
+</body>
+</html>
