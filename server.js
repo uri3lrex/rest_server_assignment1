@@ -9,7 +9,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const PORT = 3000;
+const PORT = 3000; //pls work
 const apiKey = process.env.OPENWEATHER_API_KEY;
 
 app.get('/weather/:city', async (req, res) => {

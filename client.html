@@ -10,42 +10,48 @@
 
     <div id="app">
         <h1>Welcome to my Weather App!</h1>
-        Please enter the city.<br>
-        City: <input v-model="city"><br>
-        <button @click="GetCity">Find my weather!</button>
-        at {{city}}
-        <br>Latest City you searched was: {{cities}}
-        <span v-if="history.length>0">
+        <p>Enter a city name to get current weather:</p><br>
+        <input v-model="city" placeholder="e.g.Dublin"/>
+        <button @click="getWeather">Get Weather</button>
+        <div v-if="weather">
+            <h2>Weather in {{weather.city}}</h2>
+            <p>Temperature: {{weather.temperature}} °C</p>
+            <p>Humidity: {{weather.humidity}}%</p>
+            <p>Condition: {{weather.condition}}</p>
+        </div>
+        <div v-if="history.length > 0">
             <hr>
-            <h1>History of Cities generated</h1>
+            <h3>Recent Searches:</h3>
             <ul>
-                <li v-for="Places in history">{{Places}}</li>
+                <li v-for="(item,index) in history" :key="index">
+                    {{item.city}} = {{item.temperature}}°C {{item.condition}}
+                </li>
             </ul>
-        </span>
+        </div>
     </div>
-
     <script>
-        var app= new Vue({
+        new Vue({
             el:'#app',
             data:{
-                city: Dublin
+                city: '',
+                weather: null,
+                history:[]
             },
             methods: {
-                GetCity : getCity
-            }
-        })
-
-        function getCity(){
-            console.log("getCity called!")
-             let prom = fetch("http://localhost:3000/weather/" + this.city)
-            prom
-            .then(response => response.json())
-            .then(response => {
-                this.random = response.result
-                this.history.push(response.result)
-            })
-        }
+                async getWeather(){
+                    if (!this.city) return alert('Please enter a VALID city name!');
+                    try {
+                        const response = await fetch (`http://localhost:3000/weather/${this.city}`);
+                        const data = await response.json();
+                        this.weather=data;
+                        this.history.unshift(data);
+                    } catch (err){
+                        console.error("Error fetching weather:", err);
+                        alert("Failed to fetch weather data.");
+                    }
+                },
+            },
+        });  
     </script>
-    
 </body>
 </html>
