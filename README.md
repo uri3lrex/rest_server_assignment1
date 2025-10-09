@@ -40,6 +40,7 @@ weather-app/
 
 ## Week 4 To-Do List
 - [x] get weather API key (2 calls so far??): free for 60 calls per day. worth it.
+- [x] Set up a dummy front end and back end in the prototype branch
 - [ ] Vue technology setup: as per the assignment's requirement
 - [ ] Connect front and back (Possibly through axious??): convenient http client
 - [ ] Display results : render data
