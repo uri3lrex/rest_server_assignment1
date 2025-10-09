@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random number generator</title>
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <div id="app">
+        <h1>Welcome to the RandomNumber generator!</h1>
+        Please enter a minimum and a maximum as the range of the Random Number. <br>
+        Minimum: <input v-model="randMin"><input v-model="randMax"><br><br>
+        <button @click="getRand">Generate Random Number</button>
+        between {{randMin}} and {{randMax}}
+        <br>Latest Random number is: {{random}}
+        <span v-if="history.length>0">
+            <hr>
+            <h1>History of Numbers generated</h1>
+            <ul>
+                <li v-for="num in history">{{num}}</li>
+            </ul>
+        </span>
+    </div>
+    <script>
+        var app= new Vue({
+            el:'#app',
+            data:{
+                randMin:1,
+                randMax:10,
+                random:-1, history:[]
+            },
+            methods:{
+                getRand: getRandom
+            }
+        })
+
+        function getRandom(){
+            console.log("getRandom is called")
+            let prom = fetch("http://localhost:5500/random/" + this.randMin + "/" + this.randMax)
+            prom
+            .then(response => response.json())
+            .then(response => {
+                this.random = response.result
+                this.history.push(response.result)
+            })
+        }
+
+    </script>
+
+    <!--<script src="prototype\prototype.js"></script>-->
+</body>
+</html>
