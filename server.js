@@ -31,7 +31,8 @@ app.get('/weather/:city', async (req, res) => {
   }
 });
 
+
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
-  console.log(`Try: http://localhost:${PORT}/weather/Dublin`);
+  console.log(`Try (FOR TESTING): http://localhost:${PORT}/weather/Dublin`);
 });
