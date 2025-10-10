@@ -63,7 +63,7 @@ app.get('/forecast/:city', async (req,res)=> {
     // packing??
 
     let packing ='';
-    const avgTemperature = forecast.reduce((sum,d)=> sum+d.temperature,0)/forecast.length();
+    const avgTemperature = forecast.reduce((sum,d)=> sum+d.temperature,0)/forecast.length;
     if (avgTemperature < 8)
       packing = 'Cold';
     else if(avgTemperature >= 8 && avgTemperature <=24)
