@@ -90,10 +90,29 @@ app.get('/forecast/:city', async (req,res)=> {
 
     if(forecast.some(d => d.rain > 0)) packing += ', Bring an umbrella!';
 
+    const airUrl = `http://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${apiKey}`;
+    const airResponse = await axios.get(airUrl);
+    const air = airResponse.data;
+    const airData = air.list[0].main.aqi;
+    const components = air.list[0].components;
+
+    const aqidesc = {
+      1: 'Good',
+      2: 'Fair',
+      3: 'Moderate',
+      4: 'Poor',
+      5: 'Very Poor'
+    }[airData];
+
     res.json({
-      city: response.data.city.name,
-      packingAdvice: packing, forecast
-    });
+      city: city,
+      packingAdvice: packing, forecast,
+      airPollution: {
+        aqi: airData,
+        description: aqidesc,
+        components
+    }
+  });
 
   } catch (error) {
     console.error('Error fetching weather:', error.message);
@@ -101,8 +120,8 @@ app.get('/forecast/:city', async (req,res)=> {
   }
 })
 
-
-app.get('/air_pollution/:city', async(req,res)=> {
+//FOR TESTING AIR POLLUTION
+/**app.get('/air_pollution/:city', async(req,res)=> {
   const city = req.params.city;
   try {
     const {lat,lon,name} = await getCoordinates(city);
@@ -142,7 +161,7 @@ app.get('/air_pollution/:city', async(req,res)=> {
     console.error('Error fetching weather:', error.message);
     res.status(500).json({ error: 'Failed to fetch air pollution data' });
   }
-})
+})*/
 
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);

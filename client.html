@@ -16,6 +16,7 @@
         <div v-if="ForecastData">
             <h2>Forecast for: {{ForecastData.city}}</h2>
             <p><b>Packing</b> : <em>{{ForecastData.packingAdvice}}</em></p>
+            <p><b>Air Quality</b> : <em>{{ForecastData.airPollution}}</em></p>
             <table border="1" cellspacing="0" cellpadding="5">
         <tr>
           <th>Day</th>
@@ -36,7 +37,7 @@
             <h3>Recent Searches:</h3>
             <ul>
                 <li v-for="(item,index) in history" :key="index">
-                    {{item.city}} -> {{item.packingAdvice}}
+                    {{item.city}} -> {{item.packingAdvice}} -> {{item.airPollution}}
                 </li>
             </ul>
         </div>
