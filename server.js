@@ -101,11 +101,52 @@ app.get('/forecast/:city', async (req,res)=> {
   }
 })
 
-//http://api.openweathermap.org/data/2.5/air_pollution/forecast?lat={lat}&lon={lon}&appid={API key}
 
-//app.get('/air_pollution/:city', async)
+app.get('/air_pollution/:city', async(req,res)=> {
+  const city = req.params.city;
+  try {
+    const {lat,lon,name} = await getCoordinates(city);
+    const airUrl = `http://api.openweathermap.org/data/2.5/air_pollution/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}`;
+    const airresponse = await axios.get(airUrl);
+    const air = airresponse.data;
+    
+    const airData = air.list[0].main.aqi;
+    const components = air.list[0].components;
+
+    const aqidesc= {
+      1: 'Good',
+      2: 'Fair',
+      3: 'Moderate',
+      4: 'Poor',
+      5: 'Very Poor'
+    }[airData]
+
+    res.json({
+      city: name,
+      aqi: airData,
+      description: aqidesc,
+      components: {
+        co: components.co,
+        no: components.no,
+        no2: components.no2,
+        o3: components.o3,
+        so2: components.so2,
+        pm2_5: components.pm2_5,
+        pm10: components.pm10,
+        nh3: components.nh3
+      }
+
+    });
+  }
+  catch (error) {
+    console.error('Error fetching weather:', error.message);
+    res.status(500).json({ error: 'Failed to fetch air pollution data' });
+  }
+})
 
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
   console.log(`Try: http://localhost:${PORT}/weather/Dublin`);
+  console.log(`Try: http://localhost:${PORT}/air_pollution/Dublin`);
+  
 });
