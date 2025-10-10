@@ -41,7 +41,7 @@ app.get('/forecast/:city', async (req,res)=> {
 
     const forecast = [];
     const today = new Date();
-    for (i=0; i<3;i++){
+    for (i=0; i<4;i++){
       const day = new Date(today);
       day.setDate(today.getDate()+i);
       const dayWord= day.toISOString().split('T')[0]; 

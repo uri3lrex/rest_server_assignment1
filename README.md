@@ -44,10 +44,10 @@ weather-app/
 - [x] Vue technology setup: as per the assignment's requirement
 - [x] Connect front and back (Possibly through axious??): convenient http client. Paired with this I just simply connected it by running it on the same port.
 - [x] Display results : render data for the current day
-- [ ] Display results : with a deliberate forecast so need to add another route to what was added earlier.
-- [ ] Packing
-- [ ] Temperature
-- [ ] Summary table
+- [x] Display results : with a deliberate forecast so need to add another route to what was added earlier.
+- [x] Packing
+- [x] Temperature
+- [x] Summary table
 - [ ] Update the sketch architecture in final
 - [ ] Style the appp: setting up the website through the html/css/js wombocombo
 
@@ -61,10 +61,10 @@ weather-app/
 
 ## Deliverables
 - [x] Shows current day weather
-- [ ] To be done by week 4: Shows forecast of the next 3 day
-- [ ] To be done by Week 4: Packing which shows that you should get an umbrella if its gonna rain in the forecast.
-- [ ] To be done by Week 4: A temperature systems which shows whether that the user should pack for Cold (temperatures below 8C), Mild (temperatures from 8C to 24C inclusive) or Hot (temperatures above 24C
-- [ ] Give a summary table for the next 3 days showing: Temperature, Wind Speed and Rainfall level.
+- [] To be done by week 4: Shows forecast of the next 3 day
+- [x] To be done by Week 4: Packing which shows that you should get an umbrella if its gonna rain in the forecast.
+- [x] To be done by Week 4: A temperature systems which shows whether that the user should pack for Cold (temperatures below 8C), Mild (temperatures from 8C to 24C inclusive) or Hot (temperatures above 24C)
+- [x] Give a summary table for the next 3 days showing: Temperature, Wind Speed and Rainfall level.
 - [ ] When you request the weather data for a city, it will return you the Longitude and Latitude of the city. You can then use these in the AIR Pollution API to get detailed information on a number of different air pollutants. If any of these pollutants exceed the categorised as "Good" in the API documentation a warning message should be generated detailing which pollutant has been measured at elevated levels, in indication of how elevated the levels are together with the potential health risks associated with those levels.
 
 ## Possible innovations:
