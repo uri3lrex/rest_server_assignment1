@@ -32,16 +32,33 @@ app.get('/weather/:city', async (req, res) => {
   }
 });
 
+async function getCoordinates(city) {
+  const geourl = `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${apiKey}`;
+  const georesponse = await axios.get(geourl);
+
+  if (georesponse.data.length === 0) {
+    throw new Error("Can't fetch city");
+  }
+  const match = georesponse.data.find (
+    loc => loc.name.toLowerCase() == city.toLowerCase()
+  );
+  const chosen = match || georesponse.data[0]
+  const  { lat, lon, name, country } = chosen;
+  return { lat, lon, name, country }; 
+  
+}
+
 app.get('/forecast/:city', async (req,res)=> {
   const city = req.params.city;
   try {
-    const url = `${mapURL}/forecast?q=${city}&appid=${apiKey}&units=metric`;
-    const response = await axios.get(url);
+    const {lat,lon, name} = await getCoordinates(city);
+    const forecasturl = `${mapURL}/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+    const response = await axios.get(forecasturl);
     const forecastlist = response.data.list;
 
     const forecast = [];
     const today = new Date();
-    for (i=0; i<4;i++){
+    for (let i=0; i<4;i++){
       const day = new Date(today);
       day.setDate(today.getDate()+i);
       const dayWord= day.toISOString().split('T')[0]; 
@@ -83,6 +100,10 @@ app.get('/forecast/:city', async (req,res)=> {
     res.status(500).json({ error: 'Failed to fetch weather data' });
   }
 })
+
+//http://api.openweathermap.org/data/2.5/air_pollution/forecast?lat={lat}&lon={lon}&appid={API key}
+
+//app.get('/air_pollution/:city', async)
 
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
