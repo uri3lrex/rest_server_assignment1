@@ -107,11 +107,7 @@ app.get('/forecast/:city', async (req,res)=> {
     res.json({
       city: city,
       packingAdvice: packing, forecast,
-      airPollution: {
-        aqi: airData,
-        description: aqidesc,
-        components
-    }
+      airPollution: aqidesc
   });
 
   } catch (error) {
