@@ -139,7 +139,7 @@ app.get('/forecast/:city', async (req,res)=> {
       5: 'Very Poor'
     }[airData];
 
-    const tripAdvice = getTripAdvice(avgTemperature,avgWind,hasRain,aqidesc); //aqidesc doesn't work for some reason. will check.
+    const tripAdvice = getTripAdvice(avgTemperature,avgWind,hasRain,airData); //aqidesc doesn't work for some reason. will check.
 
     res.json({
       city: city,
