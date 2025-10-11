@@ -70,6 +70,8 @@ weather-app/
 
 ## Problems:
 - [x] Ask whether returning "Mountjoy" when you type "Dublin" is okay or like- do we have to be super precise cause then I might not pass the geo coordindates in that and use that only for air pollution API.
+- Google API is too costly.
+- [ ] Can't seem to run the Nominatim API. probs split the branch and figure it out in week 5
 
 ## Possible innovations:
 - [ ] INNOVATIVE: Probs use local storage to retain the results of the search.
@@ -87,4 +89,5 @@ weather-app/
 - [NPM Axios install](https://www.npmjs.com/package/axios)
 - [Vue documentation](https://vuejs.org/guide/introduction.html)
 - [Vue.js directives](https://vueschool.io/articles/vuejs-tutorials/vue-js-directives-a-beginners-guide/)
-- [Auto-suggesting places using Google API](https://youtu.be/Z4mSBypzQsI)
+- ~~[Auto-suggesting places using Google API](https://youtu.be/Z4mSBypzQsI)~~
+- [Nominatim API for auto suggest](https://nominatim.org/release-docs/latest/api/Overview/)
