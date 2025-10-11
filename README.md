@@ -74,8 +74,8 @@ weather-app/
 - [ ] INNOVATIVE: Probs use local storage to retain the results of the search.
 - [ ] CREATIVE (week 4 weekend): Add a fun UI with picture changes
 - [ ] INNOVATIVE: Auto-suggest cities
-- [ ] INNOVATIVE : Add insights of clothing!!! and maybe trips!!
-- [ ] INNOVATIVE: Adding a date!
+- [x] INNOVATIVE : Add insights of clothing!!! and maybe trips!!
+- [x] INNOVATIVE: Adding a date!
 
 ## Documentation: 
 
