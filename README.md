@@ -48,8 +48,8 @@ weather-app/
 - [x] Packing
 - [x] Temperature
 - [x] Summary table
-- [ ] Update the sketch architecture in final
 - [ ] Style the appp: setting up the website through the html/css/js wombocombo
+- [ ] Update the sketch architecture in final
 
 ## Week 5 To-Do List
 - [ ] Try to handle errors and edge cases
@@ -61,7 +61,7 @@ weather-app/
 
 ## Deliverables
 - [x] Shows current day weather
-- [x] To be done by week 4: Shows forecast of the next 3 day
+- [x] To be done by week 4: Shows forecast of the next 3 day (updated to 5 days)
 - [x] To be done by Week 4: Packing which shows that you should get an umbrella if its gonna rain in the forecast.
 - [x] To be done by Week 4: A temperature systems which shows whether that the user should pack for Cold (temperatures below 8C), Mild (temperatures from 8C to 24C inclusive) or Hot (temperatures above 24C)
 - [x] Give a summary table for the next 3 days showing: Temperature, Wind Speed and Rainfall level.
