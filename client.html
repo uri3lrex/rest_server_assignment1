@@ -7,15 +7,19 @@
 </head>
 <body>
      <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-
     <div id="app"> 
         <h1>Welcome to my Weather App!</h1>
+         <h2>Today's date: {{ currentDate }}</h2>
+        <h2><span id="date"></span></h2>
         <p>Enter a city name to get your forecast:</p><br>
         <input v-model="city" placeholder="e.g.Dublin"/>
         <button @click="getForecast">Get Forecast</button>
         <div v-if="ForecastData">
             <h2>Forecast for: {{ForecastData.city}}</h2>
             <p><b>Packing</b> : <em>{{ForecastData.packingAdvice}}</em></p>
+            <p><b>Clothing</b> : <em>{{ForecastData.clothing}}</em></p>
+            <p><b>Planning a trip?</b> <br>
+            <em>{{ForecastData.trip}}</em></p>
             <p><b>Air Quality</b> : <em>{{ForecastData.airPollution}}</em></p>
             <table border="1" cellspacing="0" cellpadding="5">
         <tr>
@@ -48,7 +52,13 @@
             data:{
                 city: '',
                 weather: null,
-                history:[]
+                history:[],
+                currentdate: ''
+            },
+            created() {
+                const date = new Date();
+                const parts = date.toString().split(" ");
+                this.currentDate = `${parts[1]} ${parts[2]}, ${parts[3]}`;
             },
             methods: {
                 async getForecast(){

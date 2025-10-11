@@ -74,6 +74,8 @@ weather-app/
 - [ ] INNOVATIVE: Probs use local storage to retain the results of the search.
 - [ ] CREATIVE (week 4 weekend): Add a fun UI with picture changes
 - [ ] INNOVATIVE: Auto-suggest cities
+- [ ] INNOVATIVE : Add insights of clothing!!! and maybe trips!!
+- [ ] INNOVATIVE: Adding a date!
 
 ## Documentation: 
 
@@ -84,3 +86,4 @@ weather-app/
 - [NPM Axios install](https://www.npmjs.com/package/axios)
 - [Vue documentation](https://vuejs.org/guide/introduction.html)
 - [Vue.js directives](https://vueschool.io/articles/vuejs-tutorials/vue-js-directives-a-beginners-guide/)
+- [Auto-suggesting places using Google API](https://youtu.be/Z4mSBypzQsI)

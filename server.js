@@ -48,6 +48,35 @@ async function getCoordinates(city) {
   
 }
 
+// INNOVATIVE : Add insights of clothing!!! and maybe trips!!
+
+function getClothingAdvice(avgTemp, avgWind, hasRain) {
+  let advice = [];
+
+  // Temperature-based 
+  if (avgTemp < 5) advice.push("Wear a heavy coat or puffer jacket");
+  else if (avgTemp < 12) advice.push("Wear a jacket or layered clothing");
+  else if (avgTemp < 20) advice.push("Light jacket or long sleeves should do");
+  else advice.push("T-shirt weather! Stay cool and hydrated");
+
+  // Wind-based 
+  if (avgWind > 8) advice.push("It's quite windy - a windbreaker or scarf helps");
+  else if (avgWind > 4) advice.push("Mild breeze, so light layers work fine");
+
+  // Rain-based 
+  if (hasRain) advice.push("Bring an umbrella or waterproof jacket");
+
+  return advice.join(". ") + ".";
+}
+
+function getTripAdvice(avgTemp, avgWind, hasRain, airQuality) {
+  if (hasRain) return "Perfect time to explore indoor attractions like museums or cafes.";
+  if (airQuality > 3) return "Air quality isn't great- try indoor spots or short walks.";
+  if (avgTemp >= 15 && avgWind < 5) return "Great day for outdoor activities- maybe parks, sightseeing, or hiking!";
+  if (avgTemp < 10) return "It's chilly; bundle up for a scenic walk or stay cozy indoors.";
+  return "Mild weather — mix of indoor and outdoor plans would work well.";
+}
+
 app.get('/forecast/:city', async (req,res)=> {
   const city = req.params.city;
   try {
@@ -90,6 +119,12 @@ app.get('/forecast/:city', async (req,res)=> {
 
     if(forecast.some(d => d.rain > 0)) packing += ', Bring an umbrella!';
 
+    const avgWind = forecast.reduce((sum,d)=> sum+d.wind,0)/forecast.length;
+    const hasRain = forecast.some(d => d.rain > 0);
+
+    const clothingAdvice = getClothingAdvice(avgTemperature, avgWind, hasRain);
+
+
     const airUrl = `http://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${apiKey}`;
     const airResponse = await axios.get(airUrl);
     const air = airResponse.data;
@@ -104,9 +139,13 @@ app.get('/forecast/:city', async (req,res)=> {
       5: 'Very Poor'
     }[airData];
 
+    const tripAdvice = getTripAdvice(avgTemperature,avgWind,hasRain,aqidesc); //aqidesc doesn't work for some reason. will check.
+
     res.json({
       city: city,
       packingAdvice: packing, forecast,
+      clothing: clothingAdvice,
+      trip: tripAdvice,
       airPollution: aqidesc
   });
 
