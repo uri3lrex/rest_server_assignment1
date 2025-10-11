@@ -48,7 +48,7 @@ weather-app/
 - [x] Packing
 - [x] Temperature
 - [x] Summary table
-- [ ] Work on extra features
+- [x] Work on extra features - 2/5
 - [ ] Style the appp: setting up the website through the html/css/js wombocombo
 - [ ] Update the sketch architecture in final
 
