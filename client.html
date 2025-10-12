@@ -4,21 +4,64 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather App</title>
-    <!--<link rel="stylesheet" href="style.css"/>-->
+    <link rel="stylesheet" href="style.css"/>
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+        />
 </head>
 <body>
      <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-     <script src="https://cdn.jsdelivr.net/npm/animejs/dist/bundles/anime.umd.min.js"></script>
-     <script>
-     const { animate } = anime;
-     </script>
+     <script type="importmap">
+{
+  "imports": {
+    "animejs": "/node_modules/animejs/dist/modules/index.js",
+    "animejs/animation": "/node_modules/animejs/dist/modules/animation/index.js",
+    "animejs/timer": "/node_modules/animejs/dist/modules/timer/index.js",
+    "animejs/timeline": "/node_modules/animejs/dist/modules/timeline/index.js",
+    "animejs/animatable": "/node_modules/animejs/dist/modules/animatable/index.js",
+    "animejs/draggable": "/node_modules/animejs/dist/modules/draggable/index.js",
+    "animejs/scope": "/node_modules/animejs/dist/modules/scope/index.js",
+    "animejs/engine": "/node_modules/animejs/dist/modules/engine/index.js",
+    "animejs/events": "/node_modules/animejs/dist/modules/events/index.js",
+    "animejs/easings": "/node_modules/animejs/dist/modules/easings/index.js",
+    "animejs/utils": "/node_modules/animejs/dist/modules/utils/index.js",
+    "animejs/svg": "/node_modules/animejs/dist/modules/svg/index.js",
+    "animejs/text": "/node_modules/animejs/dist/modules/text/index.js",
+    "animejs/waapi": "/node_modules/animejs/dist/modules/waapi/index.js"
+  }
+}
+</script>
+<script type="module">
+  import { animate } from 'animejs/animation';
+  import { splitText } from 'animejs/text';
+  import { stagger, random } from 'animejs/utils';
+
+  const split = splitText('p');
+
+  animate(split.words, {
+    opacity: () => random(0, 1, 2),
+    delay: stagger(50),
+  });
+
+</script>
+     
     <div id="app"> 
-        <h1>Welcome to my Weather App!</h1>
-         <h2>Today's date: {{ currentDate }}</h2>
-        <h2><span id="date"></span></h2>
-        <p>Enter a city name to get your forecast:</p><br>
-        <input v-model="city" placeholder="e.g.Dublin"/>
-        <button @click="getForecast">Get Forecast</button>
+        <nav id="welcome">
+            <div class="opening">
+                <h1 class="heading">How's the sky looking today?</h1>
+                <h3>Today's date: {{ currentDate }}</h3>
+                <h2><span id="date"></span></h2>
+            </div>
+        </nav>
+
+        <section class="search-section">
+            <div class="search-bar">
+            <input v-model="city" placeholder="e.g.Dublin"/>
+            <button class="search-btn" @click="getForecast"><i class="fa fa-search" aria-hidden="true"></i></button>
+        </div>
+        </section>
+
         <div v-if="ForecastData">
             <h2>Forecast for: {{ForecastData.city}}</h2>
             <p><b>Packing</b> : <em>{{ForecastData.packingAdvice}}</em></p>
