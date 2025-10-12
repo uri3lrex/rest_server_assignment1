@@ -88,7 +88,7 @@
                         this.animateUI();
                         return;
                     }
-                    
+
                     try {
                         const response = await fetch (`http://localhost:3000/forecast/${this.city}`);
                         const data = await response.json();
