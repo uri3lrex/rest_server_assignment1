@@ -91,3 +91,4 @@ weather-app/
 - [Vue.js directives](https://vueschool.io/articles/vuejs-tutorials/vue-js-directives-a-beginners-guide/)
 - ~~[Auto-suggesting places using Google API](https://youtu.be/Z4mSBypzQsI)~~
 - [Nominatim API for auto suggest](https://nominatim.org/release-docs/latest/api/Overview/)
+- [For animation](https://animejs.com/documentation/getting-started/module-imports)
