@@ -49,10 +49,11 @@ weather-app/
 - [x] Temperature
 - [x] Summary table
 - [x] Work on extra features - 2/5
-- [ ] Style the appp: setting up the website through the html/css/js wombocombo
+- [ ] Style the appp: through Canva for now to have a vision
 - [ ] Update the sketch architecture in final
 
 ## Week 5 To-Do List
+- [ ] Style the appp: setting up the website through the html/css/js wombocombo
 - [ ] Try to handle errors and edge cases
 - [ ] add icons. design icons maybe
 - [ ] test latency?? validate JSON output structure
