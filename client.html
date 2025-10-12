@@ -12,40 +12,6 @@
 </head>
 <body>
      <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-     <script type="importmap">
-{
-  "imports": {
-    "animejs": "/node_modules/animejs/dist/modules/index.js",
-    "animejs/animation": "/node_modules/animejs/dist/modules/animation/index.js",
-    "animejs/timer": "/node_modules/animejs/dist/modules/timer/index.js",
-    "animejs/timeline": "/node_modules/animejs/dist/modules/timeline/index.js",
-    "animejs/animatable": "/node_modules/animejs/dist/modules/animatable/index.js",
-    "animejs/draggable": "/node_modules/animejs/dist/modules/draggable/index.js",
-    "animejs/scope": "/node_modules/animejs/dist/modules/scope/index.js",
-    "animejs/engine": "/node_modules/animejs/dist/modules/engine/index.js",
-    "animejs/events": "/node_modules/animejs/dist/modules/events/index.js",
-    "animejs/easings": "/node_modules/animejs/dist/modules/easings/index.js",
-    "animejs/utils": "/node_modules/animejs/dist/modules/utils/index.js",
-    "animejs/svg": "/node_modules/animejs/dist/modules/svg/index.js",
-    "animejs/text": "/node_modules/animejs/dist/modules/text/index.js",
-    "animejs/waapi": "/node_modules/animejs/dist/modules/waapi/index.js"
-  }
-}
-</script>
-<script type="module">
-  import { animate } from 'animejs/animation';
-  import { splitText } from 'animejs/text';
-  import { stagger, random } from 'animejs/utils';
-
-  const split = splitText('p');
-
-  animate(split.words, {
-    opacity: () => random(0, 1, 2),
-    delay: stagger(50),
-  });
-
-</script>
-     
     <div id="app"> 
         <nav id="welcome">
             <div class="opening">
