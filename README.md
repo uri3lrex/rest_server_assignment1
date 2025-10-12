@@ -93,3 +93,5 @@ weather-app/
 - ~~[Auto-suggesting places using Google API](https://youtu.be/Z4mSBypzQsI)~~
 - [Nominatim API for auto suggest](https://nominatim.org/release-docs/latest/api/Overview/)
 - [For animation](https://animejs.com/documentation/getting-started/module-imports)
+- [Fonts used](https://fonts.google.com/selection/embed)
+- [Font awesome](https://fontawesome.com/v4/)
