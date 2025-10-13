@@ -54,7 +54,7 @@ weather-app/
 
 ## Week 5 To-Do List
 - [ ] Style the appp: setting up the website through the html/css/js wombocombo
-- [ ] Try to handle errors and edge cases
+- [x] Try to handle errors and edge cases
 - [ ] add icons. design icons maybe
 - [ ] test latency?? validate JSON output structure
 - [ ] Optional stuff
@@ -77,7 +77,7 @@ weather-app/
 
 ## Possible innovations:
 - [ ] INNOVATIVE: Probs use local storage to retain the results of the search.
-- [ ] CREATIVE (week 4 weekend): Add a fun UI with picture changes
+- [ ] CREATIVE (week 4 weekend): Add a fun UI with picture changes along with background changes depending on JSON element.
 - [ ] INNOVATIVE: Auto-suggest cities
 - [x] INNOVATIVE : Add insights of clothing!!! and maybe trips!!
 - [x] INNOVATIVE: Adding a date!
