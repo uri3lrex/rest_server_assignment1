@@ -17,8 +17,8 @@ app.get('/weather/:city', async (req, res) => {
   const city = req.params.city;
   try {
     const url = `${mapURL}/weather?q=${city}&appid=${apiKey}&units=metric`;
-    const response = await axios.get(url);
-    const weather = response.data;
+    const todayresponse = await axios.get(url);
+    const weather = todayresponse.data;
 
     res.json({
       city: weather.name,
@@ -86,7 +86,9 @@ app.get('/forecast/:city', async (req,res)=> {
     const forecastlist = response.data.list;
 
     const forecast = [];
+    // setting up today's weather 
     const today = new Date();
+
     for (let i=0; i<4;i++){
       const day = new Date(today);
       day.setDate(today.getDate()+i);
@@ -201,6 +203,7 @@ app.get('/forecast/:city', async (req,res)=> {
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
   console.log(`Try: http://localhost:${PORT}/weather/Dublin`);
+  console.log(`Try: http://localhost:${PORT}/forecast/Dublin`);
   console.log(`Try: http://localhost:${PORT}/air_pollution/Dublin`);
   
 });

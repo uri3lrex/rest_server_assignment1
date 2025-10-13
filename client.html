@@ -41,6 +41,15 @@
         </tr>
       </table>
         </div>
+        <hr>
+        <div v-if="weather" style="margin-top:20px;">
+  <h3>🌤 Today's Forecast</h3>
+  <h2>Weather in {{weather.city}}</h2>
+            <p>Temperature: {{weather.temperature}} °C</p>
+            <p>Humidity: {{weather.humidity}}%</p>
+            <p>Condition: {{weather.condition}}</p>
+</div>
+
         <div v-if="history.length > 0">
             <hr>
             <h3>Recent Searches:</h3>

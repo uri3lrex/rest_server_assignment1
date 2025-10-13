@@ -69,6 +69,9 @@ const TEST_MODE = false;
                     try {
                         const response = await fetch (`http://localhost:3000/forecast/${this.city}`);
                         const data = await response.json();
+                        const todayresponse = await fetch (`http://localhost:3000/weather/${this.city}`);
+                        const todaydata = await todayresponse.json();
+                        this.weather=todaydata;
                         this.ForecastData=data;
                         this.history.unshift(data);
                     } catch (err){
