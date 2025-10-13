@@ -72,6 +72,7 @@ weather-app/
 - [x] Ask whether returning "Mountjoy" when you type "Dublin" is okay or like- do we have to be super precise cause then I might not pass the geo coordindates in that and use that only for air pollution API.
 - Google API is too costly.
 - [ ] Can't seem to run the Nominatim API. probs split the branch and figure it out in week 5
+- [x] Not able to print daily stats from the weather endpoint
 
 ## Possible innovations:
 - [ ] INNOVATIVE: Probs use local storage to retain the results of the search.

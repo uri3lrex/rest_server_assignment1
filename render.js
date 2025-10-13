@@ -1,4 +1,4 @@
-const TEST_MODE = false;
+const TEST_MODE = true;
 
         new Vue({
             el:'#app',
@@ -60,6 +60,13 @@ const TEST_MODE = false;
                                 { day: "2025-10-14", temperature: 16.0, wind: 4.8, rain: 0.0 }
                             ]
                         };
+                        const dummyweather = {
+                            city: this.city,
+                            temperature: 15.5,
+                            humidity: 82,
+                            condition: 'broken clouds'
+                        }
+                        this.weather = dummyweather;
                         this.ForecastData = dummyData;
                         this.history.unshift(dummyData);
                         this.animateUI();
