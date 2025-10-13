@@ -54,6 +54,13 @@ weather-app/
 - [ ] add more comments
 - [ ] Run a manual test flow
 
+## Branches:
+- **Main**: The main branch that shows the final product. To be engaged with at the end of week 5.
+- **New features**: The working branch where all the backend changes were made.
+- **Rendering**: the working branch where the frontend is utilized and the test cases are used the most.
+- **Test**: The risk zone where I experiment with funny little features which could otherwise break my code.
+- **Prototype**: Will possibly hold the most functional copy of my final product and a test_2 grounds.
+
 ## Documentation: 
 
 - [How to use/test the weather map API](https://openweathermap.org/current)
