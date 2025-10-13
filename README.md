@@ -60,6 +60,7 @@ weather-app/
 - [ ] Optional stuff
 - [ ] add more comments
 - [ ] Run a manual test flow
+- [ ] Merge to main branch.
 
 ## Deliverables
 - [x] Shows current day weather
@@ -68,6 +69,13 @@ weather-app/
 - [x] To be done by Week 4: A temperature systems which shows whether that the user should pack for Cold (temperatures below 8C), Mild (temperatures from 8C to 24C inclusive) or Hot (temperatures above 24C)
 - [x] Give a summary table for the next 3 days showing: Temperature, Wind Speed and Rainfall level.
 - [x] When you request the weather data for a city, it will return you the Longitude and Latitude of the city. You can then use these in the AIR Pollution API to get detailed information on a number of different air pollutants. If any of these pollutants exceed the categorised as "Good" in the API documentation a warning message should be generated detailing which pollutant has been measured at elevated levels, in indication of how elevated the levels are together with the potential health risks associated with those levels.
+
+## Branches:
+- **Main**: The main branch that shows the final product. To be engaged with at the end of week 5.
+- **New features**: The working branch where all the backend changes were made.
+- **Rendering**: the working branch where the frontend is utilized and the test cases are used the most.
+- **Test**: The risk zone where I experiment with funny little features which could otherwise break my code.
+- **Prototype**: Will possibly hold the most functional copy of my final product and a test_2 grounds.
 
 ## Problems:
 - [x] Ask whether returning "Mountjoy" when you type "Dublin" is okay or like- do we have to be super precise cause then I might not pass the geo coordindates in that and use that only for air pollution API.
