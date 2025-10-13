@@ -81,11 +81,12 @@ nav {
   background-color: #0056b3;
 }
 
-.results {
-  margin-top: 40px;
-  text-align: center;
-  background: rgba(255, 255, 255, 0.2);
-  padding: 20px 40px;
-  border-radius: 12px;
-  backdrop-filter: blur(8px);
+.current-day-forecast, .three-day-forecast {
+  font-weight: 300;
+}
+
+.three-day-forecast {
+  display: flex;
+  border: black;
+  
 }

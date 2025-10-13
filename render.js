@@ -42,6 +42,26 @@ const TEST_MODE = false;
             });
         },
 
+        computed: {
+            weatherIcon() {
+                if (!this.weather) return 'fa-solid fa-cloud';
+                const condition = this.weather.condition.toLowerCase();
+                if (condition.includes('rain')) return 'fa-solid fa-cloud-showers-heavy';
+                if (condition.includes('cloud')) return 'fa-solid fa-cloud';
+                if (condition.includes('sun') || condition.includes('clear')) return 'fa-solid fa-sun';
+                if (condition.includes('storm')) return 'fa-solid fa-bolt';
+                return 'fa-solid fa-cloud-sun';
+            },
+            backgroundClass() {
+                if (!this.weather) return 'clear';
+                const condition = this.weather.condition.toLowerCase();
+                if (condition.includes('rain')) return 'rainy';
+                if (condition.includes('cloud')) return 'cloudy';
+                if (condition.includes('clear') || condition.includes('sun')) return 'sunny';
+                if (condition.includes('storm')) return 'stormy';
+                return 'clear';
+            }
+        },
             methods: {
                 async getForecast(){
                     if (!this.city) return alert('Please enter a VALID city name!');
