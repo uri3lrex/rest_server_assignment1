@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <!--<link rel="stylesheet" href="style.css"/>-->
+</head>
+<body>
+     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+     <script src="https://cdn.jsdelivr.net/npm/animejs/dist/bundles/anime.umd.min.js"></script>
+     <script>
+     const { animate } = anime;
+     </script>
+    <div id="app"> 
+        <h1>Welcome to my Weather App!</h1>
+         <h2>Today's date: {{ currentDate }}</h2>
+        <h2><span id="date"></span></h2>
+        <p>Enter a city name to get your forecast:</p><br>
+        <input v-model="city" placeholder="e.g.Dublin"/>
+        <button @click="getForecast">Get Forecast</button>
+        <div v-if="ForecastData">
+            <h2>Forecast for: {{ForecastData.city}}</h2>
+            <p><b>Packing</b> : <em>{{ForecastData.packingAdvice}}</em></p>
+            <p><b>Clothing</b> : <em>{{ForecastData.clothing}}</em></p>
+            <p><b>Planning a trip?</b> <br>
+            <em>{{ForecastData.trip}}</em></p>
+            <p><b>Air Quality</b> : <em>{{ForecastData.airPollution}}</em></p>
+            <table border="1" cellspacing="0" cellpadding="5">
+        <tr>
+          <th>Day</th>
+          <th>Temperature (°C)</th>
+          <th>Wind Speed (m/s)</th>
+          <th>Rainfall (mm)</th>
+        </tr>
+        <tr v-for="day in ForecastData.forecast" :key="day.day">
+          <td>{{ day.day }}</td>
+          <td>{{ day.temperature }}</td>
+          <td>{{ day.wind }}</td>
+          <td>{{ day.rain }}</td>
+        </tr>
+      </table>
+        </div>
+        <div v-if="history.length > 0">
+            <hr>
+            <h3>Recent Searches:</h3>
+            <ul>
+                <li v-for="(item,index) in history" :key="index">
+                    {{item.city}} -> {{item.packingAdvice}} -> {{item.airPollution}}
+                </li>
+            </ul>
+        </div>
+    </div>
+    <script src="render.js"></script>
+</body>
+</html>
