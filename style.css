@@ -16,6 +16,18 @@ body {
   align-items: center;
 }
 
+.sunny {
+  background: linear-gradient(135deg, #fddb92 0%, #d1fdff 100%);
+}
+
+.rainy {
+  background: linear-gradient(135deg, #74ebd5 0%, #acb6e5 100%);
+}
+
+.cloudy {
+  background: linear-gradient(135deg, #bdc3c7 0%, #2c3e50 100%);
+}
+
 nav {
   display: flex;
   justify-content: center;
@@ -30,6 +42,7 @@ nav {
   color: #fff;
   margin-bottom: 10px;
   text-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  display: flex;
 }
 
 .opening h3 {
@@ -44,6 +57,7 @@ nav {
 }
 
 .search-bar {
+  margin-top: 20px;
   display: flex;
   align-items: center;
   background: white;
@@ -79,6 +93,96 @@ nav {
 
 .search-btn:hover {
   background-color: #0056b3;
+}
+
+.main-grid {
+  display: grid;
+  grid-template-columns: 60% 40%;
+  gap: 20px;
+  width: 100%;
+  max-width: 2000px;
+  margin-top: 20px;
+}
+
+.weather-tab {
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 20px;
+  padding: 25px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  position: relative;
+  min-height: 250px;
+}
+
+.weather-details {
+  margin-top: 18px;
+  font-size: 1.1rem;
+  color: #444;
+}
+
+.Main-city {
+  font-size: 2.5rem;
+  font-weight: 500;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+.w-icon {
+  position: absolute;
+  top: 20px;
+  right: 25px;
+}
+
+.w-icon i {
+  font-size: 50px;
+  margin-top: 2px;
+  margin-right: 10px;
+  color: #007bff;
+}
+
+.Temp {
+  font-size: 5rem;
+  font-weight: 600;
+  margin: 10px 0;
+}
+
+.condition {
+  text-transform: capitalize;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.smart-packing {
+  background: rgba(176, 216, 237, 0.95);
+  padding: 30px 20px;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.13);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  min-height: 320px;
+}
+
+.smart-packing h3 {
+  margin-top: 5px;
+  color: #0056b3;
+  text-align: left;
+}
+.smart-packing p {
+  text-align: justify;
+  font-weight: 400;
+}
+
+.packing-grid {
+  margin-top: -180px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 20px;
+  padding: 25px;
+  position: relative;
+  text-align: justify;
+  font-weight: 700;
+  color: #d9534f;
+  width: 400px;
 }
 
 .current-day-forecast, .three-day-forecast {

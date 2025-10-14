@@ -10,7 +10,7 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
         />
 </head>
-<body>
+<body :class="backgroundClass">
      <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <div id="app"> 
         <nav id="welcome">
@@ -31,24 +31,29 @@
         <section v-if="weather && ForecastData" class="main-grid">
             <div class="present-day">
                 <div class="weather-tab">
-                    <h2>{{weather.city}}</h2>
+                    <h2 class="Main-city">{{weather.city}}</h2>
                     <div class="w-icon">
-                        <i :class="wicon"></i>
+                        <i :class="wIcon"></i>
                     </div>
-                    <p class="Temp">{{weather.temperature}}</p>
+                    <p class="Temp">{{weather.temperature}}°</p>
                     <p class="condition">{{ weather.condition }}</p>
                     <p>Humidity: {{ weather.humidity }}%</p>
                 </div>
             </div>
-
             <div class="smart-packing">
-                <h3>🧳 Smart Packing</h3>
-                <p>{{ ForecastData.clothing }}</p>
-                <h3>🗺️ Plan Your Trip</h3>
-                <p>{{ ForecastData.trip }}</p>
-                <h3>🌫️ Air Quality</h3>
+                <h3>Smart Packing</h3>
+                <p>{{ ForecastData.clothing }}</p><br>
+                <h3> Plan Your Trip</h3>
+                <p>{{ ForecastData.trip }}</p><br>
+                <h3>Air Quality</h3>
                 <p>{{ ForecastData.airPollution }}</p>
             </div>
+
+           <!-- <h3 class="Packing-Advice">{{ForecastData. packingAdvice}}</h3>-->
+        </section>
+
+        <section v-if="ForecastData" class="packing-grid">
+            <h2> {{ForecastData.packingAdvice}}</h2>
         </section>
 
         <section v-if="ForecastData" class="forecast-section">

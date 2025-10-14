@@ -1,4 +1,4 @@
-const TEST_MODE = true;
+const TEST_MODE = false; // Set to false when backend is running
 
         new Vue({
             el:'#app',
@@ -43,7 +43,7 @@ const TEST_MODE = true;
         },
 
         computed: {
-            weatherIcon() {
+            wIcon() {
                 if (!this.weather) return 'fa-solid fa-cloud';
                 const condition = this.weather.condition.toLowerCase();
                 if (condition.includes('rain')) return 'fa-solid fa-cloud-showers-heavy';
@@ -84,7 +84,7 @@ const TEST_MODE = true;
                             city: this.city,
                             temperature: 15.5,
                             humidity: 82,
-                            condition: 'broken clouds'
+                            condition: 'clear sky'
                         }
                         this.weather = dummyweather;
                         this.ForecastData = dummyData;
