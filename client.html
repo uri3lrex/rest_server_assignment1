@@ -39,21 +39,22 @@
                     <p class="condition">{{ weather.condition }}</p>
                     <p>Humidity: {{ weather.humidity }}%</p>
                 </div>
+                <section v-if="ForecastData" class="packing-grid">
+                    <h2> {{ForecastData.packingAdvice}}</h2>
+                </section>
             </div>
             <div class="smart-packing">
                 <h3>Smart Packing</h3>
-                <p>{{ ForecastData.clothing }}</p><br>
+                <p>{{ ForecastData.clothing }}</p>
                 <h3> Plan Your Trip</h3>
-                <p>{{ ForecastData.trip }}</p><br>
-                <h3>Air Quality</h3>
-                <p>{{ ForecastData.airPollution }}</p>
+                <p>{{ ForecastData.trip }}</p>
+                <section v-if="ForecastData" class="air-grid">
+                    <h2>Air Quality Index: {{ForecastData.aqi}}</h2>
+                    <p>{{ForecastData.airPollution}}</p>
+                </section>
             </div>
 
            <!-- <h3 class="Packing-Advice">{{ForecastData. packingAdvice}}</h3>-->
-        </section>
-
-        <section v-if="ForecastData" class="packing-grid">
-            <h2> {{ForecastData.packingAdvice}}</h2>
         </section>
 
         <section v-if="ForecastData" class="forecast-section">

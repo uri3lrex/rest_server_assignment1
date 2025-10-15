@@ -112,6 +112,7 @@ nav {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   position: relative;
   min-height: 250px;
+  margin-bottom: 10vh;
 }
 
 .weather-details {
@@ -174,15 +175,31 @@ nav {
 }
 
 .packing-grid {
-  margin-top: -180px;
+  margin-top: 5vh;
   background: rgba(255, 255, 255, 0.8);
   border-radius: 20px;
-  padding: 25px;
+  padding: 20px;
   position: relative;
   text-align: justify;
   font-weight: 700;
   color: #d9534f;
-  width: 400px;
+  width: 100%;
+  height: auto;
+  margin-bottom: 0;
+}
+
+.air-grid {
+  margin-top: 18px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 20px;
+  padding: 20px;
+  position: relative;
+  text-align: justify;
+  font-weight: 700;
+  color: #d9534f;
+  width: 100%;
+  max-height: 120px;
+  margin-bottom: 0;
 }
 
 .current-day-forecast, .three-day-forecast {
