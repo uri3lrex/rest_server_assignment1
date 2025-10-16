@@ -37,20 +37,30 @@
                     </div>
                     <p class="Temp">{{weather.temperature}}°</p>
                     <p class="condition">{{ weather.condition }}</p>
-                    <p>Humidity: {{ weather.humidity }}%</p>
+                    <div class="additional-forecast">
+                        <div v-if="ForecastData && ForecastData.forecast && ForecastData.forecast.length">
+                            <p>Humidity: {{ weather.humidity }}%</p>
+                            <p>Wind Speed: {{ ForecastData.forecast[0].wind }} m/s</p>
+                            <p>Rainfall: {{ ForecastData.forecast[0].rain }} mm</p>
+                        </div>
+                    </div>
                 </div>
                 <section v-if="ForecastData" class="packing-grid">
                     <h2> {{ForecastData.packingAdvice}}</h2>
                 </section>
             </div>
             <div class="smart-packing">
-                <h3>Smart Packing</h3>
-                <p>{{ ForecastData.clothing }}</p>
-                <h3> Plan Your Trip</h3>
-                <p>{{ ForecastData.trip }}</p>
+                <h2 class="packing-heading">Planning a trip?</h2>
                 <section v-if="ForecastData" class="air-grid">
-                    <h2>Air Quality Index: {{ForecastData.aqi}}</h2>
-                    <p>{{ForecastData.airPollution}}</p>
+                    <h3>Smart Packing</h3>
+                    <p>{{ ForecastData.clothing }}</p>
+                </section>
+                <section v-if="ForecastData" class="air-grid">
+                    <h3> Plan Your Day</h3>
+                    <p>{{ ForecastData.trip }}</p>
+                </section>
+                <section v-if="ForecastData" class="air-grid">
+                    <h3>Air Quality Index: {{ForecastData.airPollution}}</h2>
                 </section>
             </div>
 
