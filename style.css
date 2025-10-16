@@ -6,14 +6,26 @@
   box-sizing: border-box;
 }
 
+:root {
+  --section-gap: 40px;
+  --card-padding: 20px;
+  --border-radius: 20px;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px; 
+  gap: var(--section-gap);
+}
+
+
 body {
   font-family: "Lato", sans-serif;
   background: linear-gradient(135deg, #89f7fe 0%, #66a6ff 100%);
   color: #222;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 
 .sunny {
@@ -97,14 +109,44 @@ nav {
 
 .main-grid {
   display: grid;
-  grid-template-columns: 60% 40%;
-  gap: 20px;
+  grid-template-columns: 2fr 1fr;
+  gap: 30px;
   width: 100%;
-  max-width: 2000px;
-  margin-top: 20px;
+  max-width: 1200px;
+  margin: auto;
+  align-items: start;
 }
 
+@media (max-width: 900px) {
+  .main-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .smart-packing {
+    order: 3;
+  }
+}
+
+.weather-tab,
+.packing-grid,
+.smart-packing,
+.air-grid {
+  padding: var(--card-padding);
+  border-radius: var(--border-radius);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.8);
+  margin-bottom: 20px;
+}
+
+.smart-packing {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+
 .weather-tab {
+  margin-top: 5vh;
   background: rgba(255, 255, 255, 0.8);
   border-radius: 20px;
   padding: 25px;
@@ -112,7 +154,6 @@ nav {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   position: relative;
   min-height: 250px;
-  margin-bottom: 10vh;
 }
 
 .weather-details {
@@ -155,11 +196,65 @@ nav {
   transform: scale(1.1);
 }
 
-.additional-forecast {
-  margin-top: 15px;
-  font-size: 1rem;
-  color: #555;
+.info-tabs {
+  margin-top: 70px;
+  width: 100%;
 }
+
+.tab-buttons {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.tab-buttons button {
+  flex: 1;
+  background: rgba(255,255,255,0.95);
+  border: none;
+  padding: 8px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 700;
+  color: #2c3e50;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.06);
+  transition: transform 140ms ease, background 140ms ease, color 140ms ease;
+}
+
+.tab-buttons button:hover {
+  transform: translateY(-2px);
+}
+
+.tab-buttons button.active {
+  background: linear-gradient(90deg, #66a6ff, #89f7fe);
+  color: #fff;
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(102,166,255,0.25);
+}
+
+.tab-content {
+  margin-top: 12px;
+  background: rgba(255,255,255,0.98);
+  padding: 12px 14px;
+  border-radius: 12px;
+  text-align: left;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+}
+
+.tab-content p {
+  margin: 0;
+  font-size: 1.05rem;
+  color: #222;
+}
+
+@media (max-width: 720px) {
+  .tab-buttons { gap: 6px; }
+  .tab-buttons button { padding: 8px 6px; font-size: 0.95rem; }
+  .tab-content { padding: 10px; font-size: 0.98rem; }
+}
+
 
 .Temp {
   font-size: 5rem;
@@ -174,13 +269,9 @@ nav {
 }
 
 .smart-packing {
-  background: rgba(176, 216, 237, 0.95);
-  padding: 30px 20px;
-  border-radius: 20px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.13);
+  margin-top: 5vh;
   display: flex;
   flex-direction: column;
-  gap: 10px;
 }
 
 .smart-packing h3 {
@@ -201,12 +292,10 @@ nav {
   background: rgba(255, 255, 255, 0.8);
   border-radius: 20px;
   padding: 10px;
+  margin-bottom: 15px;
 }
 
 .packing-grid {
-  background: rgba(255, 255, 255, 0.8);
-  border-radius: 20px;
-  padding: 20px;
   position: relative;
   text-align: center;
   font-weight: 700;
@@ -216,25 +305,26 @@ nav {
 }
 
 .air-grid {
-  margin-top: 1vh;
-  background: rgba(255, 255, 255, 0.8);
-  border-radius: 20px;
-  padding: 20px;
+  /*margin-top: 1vh;*/
   position: relative;
   text-align: justify;
   font-weight: 400;
   color: #d9534f;
   width: 100%;
   max-height: auto;
-  margin-bottom: 0;
 }
 
-.current-day-forecast, .three-day-forecast {
-  font-weight: 300;
+.forecast-section {
+  overflow-x: auto;
+  padding: 10px;
 }
 
-.three-day-forecast {
-  display: flex;
-  border: black;
-  
+.forecast-section table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+.forecast-section th, .forecast-section td {
+  padding: 10px;
 }

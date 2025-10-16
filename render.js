@@ -6,7 +6,8 @@ const TEST_MODE = true; // Set to false when backend is running
                 city: '',
                 weather: null,
                 history:[],
-                currentdate: ''
+                currentdate: '',
+                activeInfoTab: 'humidity'
             },
             created() {
                 const date = new Date();
@@ -84,7 +85,7 @@ const TEST_MODE = true; // Set to false when backend is running
                             city: this.city,
                             temperature: 15.5,
                             humidity: 82,
-                            condition: 'clear sky'
+                            condition: 'Broken clouds'
                         }
                         this.weather = dummyweather;
                         this.ForecastData = dummyData;
