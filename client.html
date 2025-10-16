@@ -62,7 +62,21 @@
                     </div>
                 </div>
                 <section v-if="ForecastData" class="packing-grid">
-                    <h2> {{ForecastData.packingAdvice}}</h2>
+  <div class="packing-content">
+    <div class="packing-icons left-icons">
+      <i v-if="ForecastData.clothing.toLowerCase().includes('shirt' || 'long sleeves')" class="fa-solid fa-shirt"></i>
+      <i v-if="ForecastData.clothing.toLowerCase().includes('jacket')" class="fa-solid fa-hat-cowboy-side"></i>
+    </div>
+
+    
+    <h2 class="packing-text">{{ ForecastData.packingAdvice }}</h2>
+
+
+    <div class="packing-icons right-icons">
+      <i v-if="ForecastData.packingAdvice.toLowerCase().includes('rain') || ForecastData.clothing.toLowerCase().includes('umbrella')" 
+         class="fa-solid fa-umbrella"></i>
+    </div>
+  </div>
                 </section>
             </div>
             <div class="smart-packing">

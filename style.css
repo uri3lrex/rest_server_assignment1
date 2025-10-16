@@ -1,5 +1,29 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
 
+@media (max-width: 600px) {
+  .opening .heading {
+    font-size: 2rem;
+  }
+
+  .Temp {
+    font-size: 3.5rem;
+  }
+
+  .search-bar input {
+    width: 70%;
+  }
+
+  .search-btn {
+    width: 40px;
+    height: 40px;
+  }
+
+  body {
+    padding: 10px;
+  }
+}
+
+
 * {
   margin: 0;
   padding: 0;
@@ -327,4 +351,73 @@ nav {
 
 .forecast-section th, .forecast-section td {
   padding: 10px;
+}
+
+/* PACKING SECTION STYLING */
+.packing-grid {
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 20px;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.packing-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  width: 100%;
+}
+
+.packing-icons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20%;
+}
+
+.packing-icons i {
+  font-size: 2.3rem;
+  color: #007bff;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.packing-icons i:hover {
+  transform: scale(1.2);
+  color: #0056b3;
+}
+
+.packing-text {
+  flex: 1;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #d9534f;
+  padding: 0 10px;
+}
+
+@media (max-width: 768px) {
+  .packing-content {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .packing-icons {
+    width: auto;
+  }
+
+  .packing-icons i {
+    font-size: 1.8rem;
+  }
+
+  .packing-text {
+    font-size: 1.1rem;
+  }
 }
