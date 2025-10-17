@@ -49,13 +49,13 @@ weather-app/
 - [x] Temperature
 - [x] Summary table
 - [x] Work on extra features - 2/5
-- [ ] Style the appp: through Canva for now to have a vision
+- [x] Style the appp: through Canva for now to have a vision
 - [ ] Update the sketch architecture in final
 
 ## Week 5 To-Do List
-- [ ] Style the appp: setting up the website through the html/css/js wombocombo
+- [x] Style the appp: setting up the website through the html/css/js wombocombo
 - [x] Try to handle errors and edge cases
-- [ ] add icons. design icons maybe
+- [x] add icons. design icons maybe
 - [ ] test latency?? validate JSON output structure
 - [ ] Optional stuff
 - [ ] add more comments
@@ -83,10 +83,11 @@ weather-app/
 - [ ] Can't seem to run the Nominatim API. probs split the branch and figure it out in week 5
 - [x] Not able to print daily stats from the weather endpoint
 - [ ] Prevent the immediate repeat of city searches. basically checking the entry before and making sure the one before or the one being currently displayed doesn't allow for repeat of the city (JUST BEFORE).
+- [ ] Fix history section
 
 ## Possible innovations:
 - [ ] INNOVATIVE: Probs use local storage to retain the results of the search.
-- [ ] CREATIVE (week 4 weekend): Add a fun UI with picture changes along with background changes depending on JSON element.
+- [x] CREATIVE (week 4 weekend): Add a fun UI with picture changes along with background changes depending on JSON element.
 - [ ] INNOVATIVE: Auto-suggest cities
 - [x] INNOVATIVE : Add insights of clothing!!! and maybe trips!!
 - [x] INNOVATIVE: Adding a date!
