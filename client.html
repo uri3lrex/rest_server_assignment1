@@ -124,13 +124,25 @@
 </table>
 </section>
     
-        <div v-if="history.length > 0">
-            <h3>Recent Searches:</h3>
-            <ul>
-                <li v-for="(item,index) in history" :key="index">
-                    {{item.city}} -> {{item.packingAdvice}} -> {{item.airPollution}}
-                </li>
-            </ul>
+        <div v-if="history.length > 0" class="album">
+            <h3 class="album-title">Recent Memories:</h3>
+            <div class="album-grid">
+                <div
+                v-for="(item,index) in history"
+                :key="index" 
+                class="album-card"
+                :style="{ '--roatation': (index % 2 === 0 ? '-2deg' : '2deg') }">
+                <div class="photo-header">
+                    <i class="fa-solid fa-map-location-dot"></i> {{item.city}}
+                </div>
+                <div class="photo-body">
+                     <p><i class="fa-solid fa-shirt"></i> {{ item.packingAdvice }}</p>
+                     <p><i class="fa-solid fa-wind"></i> Air: {{ item.airPollution }}</p>
+                </div>
+                <div class="photo-footer">
+                    <i class="fa-solid fa-camera"></i> Just Checked!
+                </div>
+            </div>
         </div>
     </div>
     <script src="render.js"></script>

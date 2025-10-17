@@ -635,3 +635,126 @@ nav {
     font-size: 1.1rem;
   }
 }
+
+.album {
+  margin-top: 50px;
+  text-align: center;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.album-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #4a4a9e;
+  margin-bottom: 25px;
+  letter-spacing: 1px;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+}
+
+.album-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 25px;
+  perspective: 1000px;
+}
+
+.album-card {
+  background: #fffdf9;
+  border: 2px solid #f0e6d2;
+  border-radius: 8px;
+  width: 220px;
+  height: 180px;
+  padding: 15px 10px;
+  box-shadow: 0 6px 10px rgba(0,0,0,0.15);
+  transform: rotate(var(--rotation));
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  position: relative;
+}
+
+
+.album-card:hover {
+  transform: scale(1.05) rotate(0deg);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.25);
+  z-index: 10;
+}
+
+
+.album-card::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 15px;
+  background: rgba(255, 255, 204, 0.8);
+  border: 1px solid rgba(200, 180, 100, 0.5);
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+
+.photo-header {
+  font-weight: 700;
+  color: #2c3e50;
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.photo-body {
+  font-size: 0.95rem;
+  color: #444;
+  line-height: 1.4;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.photo-footer {
+  font-size: 0.8rem;
+  color: #777;
+  font-style: italic;
+}
+
+
+.photo-body i,
+.photo-header i {
+  color: #4a90e2;
+}
+
+/* Background texture (optional for realism) */
+.album-grid {
+  background: repeating-linear-gradient(
+    45deg,
+    rgba(245, 245, 255, 0.6),
+    rgba(245, 245, 255, 0.6) 10px,
+    rgba(250, 250, 255, 0.8) 10px,
+    rgba(250, 250, 255, 0.8) 20px
+  );
+  border-radius: 16px;
+  padding: 30px 15px;
+}
+
+/* Fade in */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Responsive --- */
+@media (max-width: 600px) {
+  .memory-card {
+    width: 160px;
+    height: 140px;
+    font-size: 0.9rem;
+  }
+
+  .album-title {
+    font-size: 1.4rem;
+  }
+}
