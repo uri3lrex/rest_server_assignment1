@@ -99,22 +99,30 @@
         </section>
         <br>
         <section v-if="ForecastData" class="forecast-section">
-            <h2>Weekly forecast</h2>
-            <table border="1" cellspacing="0" cellpadding="5">
-        <tr>
+            <h2 class="forecast-table-title">Weekly forecast</h2>
+            <table class="forecast-table">
+                <thead>
+                    <tr>
           <th>Day</th>
           <th>Temperature (°C)</th>
           <th>Wind Speed (m/s)</th>
           <th>Rainfall (mm)</th>
         </tr>
-        <tr v-for="day in ForecastData.forecast" :key="day.day">
-          <td>{{ day.day }}</td>
+        </thead>
+        <tbody>
+        <tr v-for="(day,index_) in ForecastData.forecast" :key="day.day">
+          <td>
+            <span v-if="index_ === 0">Today</span>
+            <span v-if="index_ === 1">Tomorrow</span>
+            <span v-if="index_ > 1">{{ day.day }}</span>
+          </td>
           <td>{{ day.temperature }}</td>
           <td>{{ day.wind }}</td>
           <td>{{ day.rain }}</td>
         </tr>
-      </table>
-    </section>
+    </tbody>
+</table>
+</section>
     
         <div v-if="history.length > 0">
             <h3>Recent Searches:</h3>
