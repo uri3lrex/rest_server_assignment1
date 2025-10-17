@@ -1,4 +1,4 @@
-const TEST_MODE = true; // Set to false when backend is running
+const TEST_MODE = false; // Set to false when backend is running
 
         new Vue({
             el:'#app',

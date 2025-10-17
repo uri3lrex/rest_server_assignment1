@@ -52,18 +52,6 @@ body {
   min-height: 100vh;
 }
 
-.sunny {
-  background: linear-gradient(135deg, #fddb92 0%, #d1fdff 100%);
-}
-
-.rainy {
-  background: linear-gradient(135deg, #74ebd5 0%, #acb6e5 100%);
-}
-
-.cloudy {
-  background: linear-gradient(135deg, #bdc3c7 0%, #2c3e50 100%);
-}
-
 nav {
   display: flex;
   justify-content: center;
@@ -83,7 +71,7 @@ nav {
 
 .opening h3 {
   font-weight: 400;
-  color: #eef;
+  color: rgba(29, 29, 97, 0.496);
 }
 
 .search-section {
@@ -637,7 +625,7 @@ nav {
 }
 
 .album {
-  margin-top: 50px;
+  margin-top: 70px;
   text-align: center;
   animation: fadeIn 1s ease-in-out;
 }
@@ -728,17 +716,14 @@ nav {
 }
 
 /* Background texture (optional for realism) */
-.album-grid {
-  background: repeating-linear-gradient(
-    45deg,
-    rgba(245, 245, 255, 0.6),
-    rgba(245, 245, 255, 0.6) 10px,
-    rgba(250, 250, 255, 0.8) 10px,
-    rgba(250, 250, 255, 0.8) 20px
-  );
+/* .album-grid {
+  background-image: url('assets/bg_2.jpg'); 
+  background-size: cover;       
+  background-position: center;  
+  background-repeat: no-repeat; 
   border-radius: 16px;
   padding: 30px 15px;
-}
+} */
 
 /* Fade in */
 @keyframes fadeIn {
