@@ -102,10 +102,25 @@ const TEST_MODE = false; // Set to false when backend is running
                         this.weather=todaydata;
                         this.ForecastData=data;
                         this.history.unshift(data);
+                        if (history.length >6){
+                            this.history.pop();
+                        }
                     } catch (err){
                         console.error("Error fetching weather:", err);
                         alert("Failed to fetch weather data.");
                     }
                 },
+                loadFromHistory(city) {
+    // set the search box to the clicked city and fetch its forecast
+    this.city = city;
+    // call existing method that fetches forecast (getForecast)
+    if (typeof this.getForecast === 'function') {
+      this.getForecast();
+    } else {
+      console.warn('getForecast() not found on Vue instance');
+    }
+  }
+ 
+
             },
         });  

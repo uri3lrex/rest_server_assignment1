@@ -133,9 +133,12 @@
                 v-for="(item,index) in history"
                 :key="index" 
                 class="album-card"
-                :style="{ '--roatation': (index % 2 === 0 ? '-2deg' : '2deg') }">
+                :style="{ '--rotation': (index % 2 === 0 ? '-2deg' : '2deg') }">
                 <div class="photo-header">
-                    <i class="fa-solid fa-map-location-dot"></i> {{item.city}}
+                     <button class="history-btn" @click="loadFromHistory(item.city)">
++                      <i class="fa-solid fa-map-location-dot"></i>
++                      {{ item.city }}
++                    </button>
                 </div>
                 <div class="photo-body">
                      <p><i class="fa-solid fa-shirt"></i> {{ item.packingAdvice }}</p>

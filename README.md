@@ -84,6 +84,7 @@ weather-app/
 - [x] Not able to print daily stats from the weather endpoint
 - [ ] Prevent the immediate repeat of city searches. basically checking the entry before and making sure the one before or the one being currently displayed doesn't allow for repeat of the city (JUST BEFORE).
 - [ ] Fix history section
+- [ ] Latency issues while loading cities from history.
 
 ## Possible innovations:
 - [ ] INNOVATIVE: Probs use local storage to retain the results of the search.
@@ -91,6 +92,7 @@ weather-app/
 - [ ] INNOVATIVE: Auto-suggest cities
 - [x] INNOVATIVE : Add insights of clothing!!! and maybe trips!!
 - [x] INNOVATIVE: Adding a date!
+- [x] INNOVATIVE: Clickable history data.
 
 ## Documentation: 
 
