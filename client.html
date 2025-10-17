@@ -62,6 +62,7 @@
                     </div>
                 </div>
                 <section v-if="ForecastData" class="packing-grid">
+                    
   <div class="packing-content">
     <div class="packing-icons left-icons">
       <i v-if="ForecastData.clothing.toLowerCase().includes('shirt' || 'long sleeves')" class="fa-solid fa-shirt"></i>
@@ -96,9 +97,9 @@
 
            <!-- <h3 class="Packing-Advice">{{ForecastData. packingAdvice}}</h3>-->
         </section>
-
+        <br>
         <section v-if="ForecastData" class="forecast-section">
-            <h2>Forecast for: {{ForecastData.city}}</h2>
+            <h2>Weekly forecast</h2>
             <table border="1" cellspacing="0" cellpadding="5">
         <tr>
           <th>Day</th>
