@@ -1,4 +1,4 @@
-const TEST_MODE = false; // Set to false when backend is running
+const TEST_MODE = true; // Set to false when backend is running
 
         new Vue({
             el:'#app',
@@ -14,34 +14,6 @@ const TEST_MODE = false; // Set to false when backend is running
                 const parts = date.toString().split(" ");
                 this.currentDate = `${parts[1]} ${parts[2]}, ${parts[3]}`;
             },
-            mounted() {
-                anime({
-                    targets: '#title',
-                    translateY: [-30, 0],
-                    opacity: [0, 1],
-                    easing: 'easeOutElastic(1, .8)',
-                    duration: 1200
-                });
-
-    // Add hover animation to the button
-            const btn = document.getElementById('forecast-btn');
-            btn.addEventListener('mouseenter', () => {
-                anime({
-                    targets: btn,
-                    scale: [1, 1.1],
-                    duration: 200,
-                    easing: 'easeOutSine'
-                });
-            });
-            btn.addEventListener('mouseleave', () => {
-                anime({
-                    targets: btn,
-                    scale: [1.1, 1],
-                    duration: 200,
-                    easing: 'easeOutSine'
-                });
-            });
-        },
 
         computed: {
             wIcon() {
@@ -90,7 +62,9 @@ const TEST_MODE = false; // Set to false when backend is running
                         this.weather = dummyweather;
                         this.ForecastData = dummyData;
                         this.history.unshift(dummyData);
-                        this.animateUI();
+                        if (this.history.length > 6) {
+                    this.history.pop();
+                }
                         return;
                     }
 
@@ -102,9 +76,9 @@ const TEST_MODE = false; // Set to false when backend is running
                         this.weather=todaydata;
                         this.ForecastData=data;
                         this.history.unshift(data);
-                        if (history.length >6){
-                            this.history.pop();
-                        }
+                         if (this.history.length > 6) {
+                    this.history.pop();
+                }
                     } catch (err){
                         console.error("Error fetching weather:", err);
                         alert("Failed to fetch weather data.");
