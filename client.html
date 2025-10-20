@@ -24,7 +24,7 @@
         <section class="search-section">
             <div class="search-bar">
             <input v-model="city" placeholder="e.g.Dublin"/>
-            <button class="search-btn" @click="getForecast"><i class="fa fa-search" aria-hidden="true"></i></button>
+            <button class="search-btn" @click="getForecast" :disabled="searchCooldown"><i class="fa fa-search" aria-hidden="true"></i></button>
         </div>
         </section>
 

@@ -123,6 +123,11 @@ nav {
   background-color: #0056b3;
 }
 
+.search-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
 .main-grid {
   display: grid;
   grid-template-columns: 2fr 1fr;

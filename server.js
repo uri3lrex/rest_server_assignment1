@@ -95,8 +95,12 @@ app.get('/forecast/:city', async (req,res)=> {
       const dayWord= day.toISOString().split('T')[0]; 
       const entries = forecastlist.filter(item => item.dt_txt.startsWith(dayWord))
 
-      const temp = (entries.reduce((sum,item) => sum + item.main.temp,0)/entries.length).toFixed(1);
-      const wind = (entries.reduce((sum,item) => sum + item.wind.speed,0)/entries.length).toFixed(1);
+      const temp = entries.length
+  ? (entries.reduce((sum, item) => sum + item.main.temp, 0) / entries.length).toFixed(1)
+  : 0;
+      const wind = entries.length
+  ? (entries.reduce((sum, item) => sum + item.main.temp, 0) / entries.length).toFixed(1)
+  : 0;
       const rain = entries.reduce((sum,item) => sum + (item.rain?.['3h'] || 0), 0).toFixed(1);
 
       forecast.push({

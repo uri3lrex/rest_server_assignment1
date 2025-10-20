@@ -1,4 +1,4 @@
-const TEST_MODE = true; // Set to false when backend is running
+const TEST_MODE = false; // Set to false when backend is running
 
         new Vue({
             el:'#app',
@@ -7,13 +7,42 @@ const TEST_MODE = true; // Set to false when backend is running
                 weather: null,
                 history:[],
                 currentdate: '',
-                activeInfoTab: 'humidity'
+                activeInfoTab: 'humidity',
+                searchCooldown: false
             },
             created() {
                 const date = new Date();
                 const parts = date.toString().split(" ");
                 this.currentDate = `${parts[1]} ${parts[2]}, ${parts[3]}`;
             },
+            mounted() {
+                anime({
+                    targets: '#title',
+                    translateY: [-30, 0],
+                    opacity: [0, 1],
+                    easing: 'easeOutElastic(1, .8)',
+                    duration: 1200
+                });
+
+    // Add hover animation to the button
+            const btn = document.getElementById('forecast-btn');
+            btn.addEventListener('mouseenter', () => {
+                anime({
+                    targets: btn,
+                    scale: [1, 1.1],
+                    duration: 200,
+                    easing: 'easeOutSine'
+                });
+            });
+            btn.addEventListener('mouseleave', () => {
+                anime({
+                    targets: btn,
+                    scale: [1.1, 1],
+                    duration: 200,
+                    easing: 'easeOutSine'
+                });
+            });
+        },
 
         computed: {
             wIcon() {
@@ -37,7 +66,17 @@ const TEST_MODE = true; // Set to false when backend is running
         },
             methods: {
                 async getForecast(){
+                     if (this.searchCooldown) {
+                        alert("Please wait a few seconds before searching again!");
+                        return;
+                    }
                     if (!this.city) return alert('Please enter a VALID city name!');
+
+                    this.searchCooldown = true;
+                    setTimeout(() => {
+                        this.searchCooldown = false;
+                    }, 2000);
+
                      if (TEST_MODE) {
                         console.log("-> Using dummy data (backend not running).");
                         const dummyData = {
@@ -62,9 +101,9 @@ const TEST_MODE = true; // Set to false when backend is running
                         this.weather = dummyweather;
                         this.ForecastData = dummyData;
                         this.history.unshift(dummyData);
-                        if (this.history.length > 6) {
-                    this.history.pop();
-                }
+                        if (this.history.length >6){
+                            this.history.pop();
+                        }
                         return;
                     }
 
@@ -76,9 +115,9 @@ const TEST_MODE = true; // Set to false when backend is running
                         this.weather=todaydata;
                         this.ForecastData=data;
                         this.history.unshift(data);
-                         if (this.history.length > 6) {
-                    this.history.pop();
-                }
+                        if (this.history.length >6){
+                            this.history.pop();
+                        }
                     } catch (err){
                         console.error("Error fetching weather:", err);
                         alert("Failed to fetch weather data.");
