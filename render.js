@@ -97,6 +97,8 @@ const TEST_MODE = false; // Set to false when backend is running
                             temperature: 15.5,
                             feels_like: 14.0,
                             humidity: 82,
+                            current_wind: 6.8,
+                            current_rain: 0.3,
                             condition: 'Broken clouds'
                         }
                         this.weather = dummyweather;
