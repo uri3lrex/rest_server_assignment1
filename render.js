@@ -1,4 +1,4 @@
-const TEST_MODE = false;
+const TEST_MODE = false; // Set to false when backend is running
 
         new Vue({
             el:'#app',
@@ -6,7 +6,9 @@ const TEST_MODE = false;
                 city: '',
                 weather: null,
                 history:[],
-                currentdate: ''
+                currentdate: '',
+                activeInfoTab: 'humidity',
+                searchCooldown: false
             },
             created() {
                 const date = new Date();
@@ -42,9 +44,39 @@ const TEST_MODE = false;
             });
         },
 
+        computed: {
+            wIcon() {
+                if (!this.weather) return 'fa-solid fa-cloud';
+                const condition = this.weather.condition.toLowerCase();
+                if (condition.includes('rain')) return 'fa-solid fa-cloud-showers-heavy';
+                if (condition.includes('cloud')) return 'fa-solid fa-cloud';
+                if (condition.includes('sun') || condition.includes('clear')) return 'fa-solid fa-sun';
+                if (condition.includes('storm')) return 'fa-solid fa-bolt';
+                return 'fa-solid fa-cloud-sun';
+            },
+            backgroundClass() {
+                if (!this.weather) return 'clear';
+                const condition = this.weather.condition.toLowerCase();
+                if (condition.includes('rain')) return 'rainy';
+                if (condition.includes('cloud')) return 'cloudy';
+                if (condition.includes('clear') || condition.includes('sun')) return 'sunny';
+                if (condition.includes('storm')) return 'stormy';
+                return 'clear';
+            }
+        },
             methods: {
                 async getForecast(){
+                     if (this.searchCooldown) {
+                        alert("Please wait a few seconds before searching again!");
+                        return;
+                    }
                     if (!this.city) return alert('Please enter a VALID city name!');
+
+                    this.searchCooldown = true;
+                    setTimeout(() => {
+                        this.searchCooldown = false;
+                    }, 2000);
+
                      if (TEST_MODE) {
                         console.log("-> Using dummy data (backend not running).");
                         const dummyData = {
@@ -60,21 +92,51 @@ const TEST_MODE = false;
                                 { day: "2025-10-14", temperature: 16.0, wind: 4.8, rain: 0.0 }
                             ]
                         };
+                        const dummyweather = {
+                            city: this.city,
+                            temperature: 15.5,
+                            feels_like: 14.0,
+                            humidity: 82,
+                            current_wind: 6.8,
+                            current_rain: 0.3,
+                            condition: 'Broken clouds'
+                        }
+                        this.weather = dummyweather;
                         this.ForecastData = dummyData;
                         this.history.unshift(dummyData);
-                        this.animateUI();
+                        if (this.history.length >6){
+                            this.history.pop();
+                        }
                         return;
                     }
 
                     try {
                         const response = await fetch (`http://localhost:3000/forecast/${this.city}`);
                         const data = await response.json();
+                        const todayresponse = await fetch (`http://localhost:3000/weather/${this.city}`);
+                        const todaydata = await todayresponse.json();
+                        this.weather=todaydata;
                         this.ForecastData=data;
                         this.history.unshift(data);
+                        if (this.history.length >6){
+                            this.history.pop();
+                        }
                     } catch (err){
                         console.error("Error fetching weather:", err);
                         alert("Failed to fetch weather data.");
                     }
                 },
+                loadFromHistory(city) {
+    // set the search box to the clicked city and fetch its forecast
+    this.city = city;
+    // call existing method that fetches forecast (getForecast)
+    if (typeof this.getForecast === 'function') {
+      this.getForecast();
+    } else {
+      console.warn('getForecast() not found on Vue instance');
+    }
+  }
+ 
+
             },
         });  

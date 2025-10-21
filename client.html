@@ -4,51 +4,151 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather App</title>
-    <!--<link rel="stylesheet" href="style.css"/>-->
+    <link rel="stylesheet" href="style.css"/>
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+        />
 </head>
-<body>
+<body :class="backgroundClass">
      <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-     <script src="https://cdn.jsdelivr.net/npm/animejs/dist/bundles/anime.umd.min.js"></script>
-     <script>
-     const { animate } = anime;
-     </script>
     <div id="app"> 
-        <h1>Welcome to my Weather App!</h1>
-         <h2>Today's date: {{ currentDate }}</h2>
-        <h2><span id="date"></span></h2>
-        <p>Enter a city name to get your forecast:</p><br>
-        <input v-model="city" placeholder="e.g.Dublin"/>
-        <button @click="getForecast">Get Forecast</button>
-        <div v-if="ForecastData">
-            <h2>Forecast for: {{ForecastData.city}}</h2>
-            <p><b>Packing</b> : <em>{{ForecastData.packingAdvice}}</em></p>
-            <p><b>Clothing</b> : <em>{{ForecastData.clothing}}</em></p>
-            <p><b>Planning a trip?</b> <br>
-            <em>{{ForecastData.trip}}</em></p>
-            <p><b>Air Quality</b> : <em>{{ForecastData.airPollution}}</em></p>
-            <table border="1" cellspacing="0" cellpadding="5">
-        <tr>
+        <nav id="welcome">
+            <div class="opening">
+                <h1 class="heading">How's the sky looking today?</h1>
+                <h3>Today's date: {{ currentDate }}</h3>
+                <h2><span id="date"></span></h2>
+            </div>
+        </nav>
+
+        <section class="search-section">
+            <div class="search-bar">
+            <input v-model="city" placeholder="e.g.Dublin"/>
+            <button class="search-btn" @click="getForecast" :disabled="searchCooldown"><i class="fa fa-search" aria-hidden="true"></i></button>
+        </div>
+        </section>
+
+        <section v-if="weather && ForecastData" class="main-grid">
+            <div class="present-day">
+                <div class="weather-tab">
+                    <h2 class="Main-city">{{weather.city}}</h2>
+                    <div class="w-icon">
+                        <i :class="wIcon"></i>
+                    </div>
+                    <br>
+                    <p class="Temp">{{weather.temperature}}°</p>
+                    <p class="feels-like">Feels like: {{weather.feels_like}}°</p>
+                    <p class="condition">{{ weather.condition }}</p>
+                    <div class="additional-forecast">
+                        <div v-if="ForecastData && ForecastData.forecast && ForecastData.forecast.length" class="info-tabs">
+                            <div class="tab-buttons">
+                                <button :class="{ active: activeInfoTab === 'humidity' }" @click="activeInfoTab = 'humidity'">Humidity</button>
+                                <button :class="{ active: activeInfoTab === 'wind' }" @click="activeInfoTab = 'wind'">Wind</button>
+                                <button :class="{ active: activeInfoTab === 'rain' }" @click="activeInfoTab = 'rain'">Rain</button>
+                            </div>
+                            <div class="tab-content">
+                                <div v-show="activeInfoTab === 'humidity'">
+                                    <p>Humidity: <strong>{{ weather.humidity }}%</strong></p>
+                                </div>
+
+                                <div v-show="activeInfoTab === 'wind'">
+                                    <p>Wind Speed: <strong>{{ weather.current_wind }} m/s</strong></p>
+                                </div>
+
+                                <div v-show="activeInfoTab === 'rain'">
+                                    <p>Rainfall: <strong>{{ weather.current_rain }} mm</strong></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <section v-if="ForecastData" class="packing-grid">
+                    
+  <div class="packing-content">
+    <div class="packing-icons left-icons">
+      <i v-if="ForecastData.clothing.toLowerCase().includes('shirt' || 'long sleeves')" class="fa-solid fa-shirt"></i>
+      <i v-if="ForecastData.clothing.toLowerCase().includes('jacket')" class="fa-solid fa-hat-cowboy-side"></i>
+    </div>
+
+    
+    <h2 class="packing-text">{{ ForecastData.packingAdvice }}</h2>
+
+
+    <div class="packing-icons right-icons">
+      <i v-if="ForecastData.packingAdvice.toLowerCase().includes('rain') || ForecastData.clothing.toLowerCase().includes('umbrella')" 
+         class="fa-solid fa-umbrella"></i>
+    </div>
+  </div>
+                </section>
+            </div>
+            <div class="smart-packing">
+                <h2 class="packing-heading">Planning a trip?</h2>
+                <section v-if="ForecastData" class="air-grid">
+                    <h3>Smart Packing</h3>
+                    <p>{{ ForecastData.clothing }}</p>
+                </section>
+                <section v-if="ForecastData" class="air-grid">
+                    <h3> Plan Your Day</h3>
+                    <p>{{ ForecastData.trip }}</p>
+                </section>
+                <section v-if="ForecastData" class="air-grid">
+                    <h3>Air Quality Index: {{ForecastData.airPollution}}</h2>
+                </section>
+            </div>
+
+           <!-- <h3 class="Packing-Advice">{{ForecastData. packingAdvice}}</h3>-->
+        </section>
+        <br>
+        <section v-if="ForecastData" class="forecast-section">
+            <h2 class="forecast-table-title">Weekly forecast</h2>
+            <table class="forecast-table">
+                <thead>
+                    <tr>
           <th>Day</th>
-          <th>Temperature (°C)</th>
+          <th>Avg. Temperature (°C)</th>
           <th>Wind Speed (m/s)</th>
           <th>Rainfall (mm)</th>
         </tr>
-        <tr v-for="day in ForecastData.forecast" :key="day.day">
-          <td>{{ day.day }}</td>
+        </thead>
+        <tbody>
+        <tr v-for="(day,index_) in ForecastData.forecast" :key="day.day">
+          <td>
+            <span v-if="index_ === 0">Today</span>
+            <span v-if="index_ === 1">Tomorrow</span>
+            <span v-if="index_ > 1">{{ day.day }}</span>
+          </td>
           <td>{{ day.temperature }}</td>
           <td>{{ day.wind }}</td>
           <td>{{ day.rain }}</td>
         </tr>
-      </table>
-        </div>
-        <div v-if="history.length > 0">
+    </tbody>
+</table>
+</section>
+    
+        <div v-if="history.length > 0" class="album">
+            <h2 class="album-title">Your Recent Checks</h2>
             <hr>
-            <h3>Recent Searches:</h3>
-            <ul>
-                <li v-for="(item,index) in history" :key="index">
-                    {{item.city}} -> {{item.packingAdvice}} -> {{item.airPollution}}
-                </li>
-            </ul>
+            <br>
+            <div class="album-grid">
+                <div
+                v-for="(item,index) in history"
+                :key="index" 
+                class="album-card"
+                :style="{ '--rotation': (index % 2 === 0 ? '-2deg' : '2deg') }">
+                <div class="photo-header">
+                     <button class="history-btn" @click="loadFromHistory(item.city)">
++                      <i class="fa-solid fa-map-location-dot"></i>
++                      {{ item.city }}
++                    </button>
+                </div>
+                <div class="photo-body">
+                     <p><i class="fa-solid fa-shirt"></i> {{ item.packingAdvice }}</p>
+                     <p><i class="fa-solid fa-wind"></i> Air: {{ item.airPollution }}</p>
+                </div>
+                <div class="photo-footer">
+                    <i class="fa-solid fa-camera"></i> Just Checked!
+                </div>
+            </div>
         </div>
     </div>
     <script src="render.js"></script>

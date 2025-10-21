@@ -17,13 +17,16 @@ app.get('/weather/:city', async (req, res) => {
   const city = req.params.city;
   try {
     const url = `${mapURL}/weather?q=${city}&appid=${apiKey}&units=metric`;
-    const response = await axios.get(url);
-    const weather = response.data;
+    const todayresponse = await axios.get(url);
+    const weather = todayresponse.data;
 
     res.json({
       city: weather.name,
       temperature: weather.main.temp,
+      feels_like: weather.main.feels_like,
       humidity: weather.main.humidity,
+      current_wind: weather.wind.speed,
+      current_rain: weather.rain ? weather.rain['1h'] || 0 : 0,
       condition: weather.weather[0].description,
     });
   } catch (error) {
@@ -86,15 +89,21 @@ app.get('/forecast/:city', async (req,res)=> {
     const forecastlist = response.data.list;
 
     const forecast = [];
+    // setting up today's weather 
     const today = new Date();
-    for (let i=0; i<4;i++){
+
+    for (let i=0; i<6;i++){
       const day = new Date(today);
       day.setDate(today.getDate()+i);
       const dayWord= day.toISOString().split('T')[0]; 
       const entries = forecastlist.filter(item => item.dt_txt.startsWith(dayWord))
 
-      const temp = (entries.reduce((sum,item) => sum + item.main.temp,0)/entries.length).toFixed(1);
-      const wind = (entries.reduce((sum,item) => sum + item.wind.speed,0)/entries.length).toFixed(1);
+      const temp = entries.length
+  ? (entries.reduce((sum, item) => sum + item.main.temp, 0) / entries.length).toFixed(1)
+  : 0;
+      const wind = entries.length
+  ? (entries.reduce((sum, item) => sum + item.wind.speed, 0) / entries.length).toFixed(1)
+  : 0;
       const rain = entries.reduce((sum,item) => sum + (item.rain?.['3h'] || 0), 0).toFixed(1);
 
       forecast.push({
@@ -201,6 +210,7 @@ app.get('/forecast/:city', async (req,res)=> {
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
   console.log(`Try: http://localhost:${PORT}/weather/Dublin`);
+  console.log(`Try: http://localhost:${PORT}/forecast/Dublin`);
   console.log(`Try: http://localhost:${PORT}/air_pollution/Dublin`);
   
 });

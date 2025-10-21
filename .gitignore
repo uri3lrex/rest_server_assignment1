@@ -3,3 +3,5 @@ node_modules/
 # Ignore environment files
 .env
 package-lock.json
+style2.css
+client2.html
