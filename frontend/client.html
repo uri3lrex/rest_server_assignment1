@@ -1,3 +1,4 @@
+<!--basic setup of the client-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,6 +13,7 @@
 </head>
 <body :class="backgroundClass">
      <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+     <!--opening front question-->
     <div id="app"> 
         <nav id="welcome">
             <div class="opening">
@@ -21,12 +23,15 @@
             </div>
         </nav>
 
+        <!--Searching section-->
         <section class="search-section">
             <div class="search-bar">
             <input v-model="city" placeholder="e.g.Dublin"/>
             <button class="search-btn" @click="getForecast" :disabled="searchCooldown"><i class="fa fa-search" aria-hidden="true"></i></button>
         </div>
         </section>
+
+        <!--the weather tab-->
 
         <section v-if="weather && ForecastData" class="main-grid">
             <div class="present-day">
@@ -62,25 +67,26 @@
                         </div>
                     </div>
                 </div>
-                <section v-if="ForecastData" class="packing-grid">
-                    
-  <div class="packing-content">
-    <div class="packing-icons left-icons">
-      <i v-if="ForecastData.clothing.toLowerCase().includes('shirt' || 'long sleeves')" class="fa-solid fa-shirt"></i>
-      <i v-if="ForecastData.clothing.toLowerCase().includes('jacket')" class="fa-solid fa-hat-cowboy-side"></i>
-    </div>
 
-    
-    <h2 class="packing-text">{{ ForecastData.packingAdvice }}</h2>
+                <!--packing advice section-->
+            <section v-if="ForecastData" class="packing-grid">
+                    <div class="packing-content">
+                        <div class="packing-icons left-icons">
+                            <i v-if="ForecastData.clothing.toLowerCase().includes('shirt' || 'long sleeves')" class="fa-solid fa-shirt"></i>
+                            <i v-if="ForecastData.clothing.toLowerCase().includes('jacket')" class="fa-solid fa-hat-cowboy-side"></i>
+                        </div>
 
+                        <h2 class="packing-text">{{ ForecastData.packingAdvice }}</h2>
 
-    <div class="packing-icons right-icons">
-      <i v-if="ForecastData.packingAdvice.toLowerCase().includes('rain') || ForecastData.clothing.toLowerCase().includes('umbrella')" 
-         class="fa-solid fa-umbrella"></i>
-    </div>
-  </div>
+                        <div class="packing-icons right-icons">
+                            <i v-if="ForecastData.packingAdvice.toLowerCase().includes('rain') || ForecastData.clothing.toLowerCase().includes('umbrella')" 
+                            class="fa-solid fa-umbrella"></i>
+                        </div>
+                    </div>
                 </section>
             </div>
+            
+            <!--smart packing section-->
             <div class="smart-packing">
                 <h2 class="packing-heading">Planning a trip?</h2>
                 <section v-if="ForecastData" class="air-grid">
@@ -92,39 +98,41 @@
                     <p>{{ ForecastData.trip }}</p>
                 </section>
                 <section v-if="ForecastData" class="air-grid">
-                    <h3>Air Quality Index: {{ForecastData.airPollution}}</h2>
+                    <h3>Air Quality Index: {{ForecastData.airPollution}}</h3>
                 </section>
             </div>
-
-           <!-- <h3 class="Packing-Advice">{{ForecastData. packingAdvice}}</h3>-->
         </section>
+
         <br>
+
+        <!--weekly forecast table-->
         <section v-if="ForecastData" class="forecast-section">
             <h2 class="forecast-table-title">Weekly forecast</h2>
             <table class="forecast-table">
                 <thead>
                     <tr>
-          <th>Day</th>
-          <th>Avg. Temperature (°C)</th>
-          <th>Wind Speed (m/s)</th>
-          <th>Rainfall (mm)</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr v-for="(day,index_) in ForecastData.forecast" :key="day.day">
-          <td>
-            <span v-if="index_ === 0">Today</span>
-            <span v-if="index_ === 1">Tomorrow</span>
-            <span v-if="index_ > 1">{{ day.day }}</span>
-          </td>
-          <td>{{ day.temperature }}</td>
-          <td>{{ day.wind }}</td>
-          <td>{{ day.rain }}</td>
-        </tr>
-    </tbody>
-</table>
-</section>
+                        <th>Day</th>
+                        <th>Avg. Temperature (°C)</th>
+                        <th>Wind Speed (m/s)</th>
+                        <th>Rainfall (mm)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="(day,index_) in ForecastData.forecast" :key="day.day">
+                        <td>
+                            <span v-if="index_ === 0">Today</span>
+                            <span v-if="index_ === 1">Tomorrow</span>
+                            <span v-if="index_ > 1">{{ day.day }}</span>
+                        </td>
+                        <td>{{ day.temperature }}</td>
+                        <td>{{ day.wind }}</td>
+                        <td>{{ day.rain }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
     
+        <!--history section-->
         <div v-if="history.length > 0" class="album">
             <h2 class="album-title">Your Recent Checks</h2>
             <hr>
@@ -151,6 +159,6 @@
             </div>
         </div>
     </div>
-    <script src="render.js"></script>
+    <script src="/backend/render.js"></script>
 </body>
 </html>

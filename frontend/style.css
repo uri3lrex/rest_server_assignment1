@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
 
+/* --- Responsive --- */
 @media (max-width: 600px) {
   .opening .heading {
     font-size: 2rem;
@@ -23,6 +24,7 @@
   }
 }
 
+/* Global Styles */
 
 * {
   margin: 0;
@@ -48,7 +50,7 @@ html {
     scroll-behavior: smooth;
 }
 
-
+/* Body and Navigation */
 body {
   font-family: "Lato", sans-serif;
   background: linear-gradient(135deg, #89f7fe 0%, #66a6ff 100%);
@@ -64,6 +66,7 @@ nav {
   text-align: center;
 }
 
+/* Opening Section */
 .opening .heading {
   font-size: 3rem;
   font-weight: 700;
@@ -78,6 +81,7 @@ nav {
   color: rgba(29, 29, 97, 0.496);
 }
 
+/* Search Section */
 .search-section {
   display: flex;
   justify-content: center;
@@ -128,6 +132,7 @@ nav {
   cursor: not-allowed;
 }
 
+/* Weather and ForecastData area */
 .main-grid {
   display: grid;
   grid-template-columns: 2fr 1fr;
@@ -148,6 +153,7 @@ nav {
   }
 }
 
+/* Card Styles */
 .weather-tab,
 .packing-grid,
 .smart-packing,
@@ -165,6 +171,7 @@ nav {
   gap: 15px;
 }
 
+/* Weather Tab Styles */
 
 .weather-tab {
   margin-top: 5vh;
@@ -308,6 +315,8 @@ nav {
   margin-bottom: 10px;
 }
 
+/* Smart Packing Styles */
+
 .smart-packing {
   margin: 5vh auto;
   display: flex;
@@ -355,6 +364,8 @@ nav {
   letter-spacing: 1px;
 }
 
+/*Designing the grids in smart packing*/
+
 .air-grid {
   width: 100%;
   padding: 18px 20px;
@@ -401,69 +412,8 @@ nav {
 .smart-packing {
   animation: ticketSlide 0.6s ease-out;
 }
+/* Forecast Table Styles */
 
-
-/*.forecast-section {
-  margin-top: 30px;
-  text-align: center;
-  animation: fadeIn 1s ease-in-out;
-}
-
-.forecast-table-title {
-  font-size: 1.8rem;
-  color: #2c3e50;
-  margin-bottom: 15px;
-  font-weight: 600;
-}
-
-.forecast-table {
-  width: 90%;
-  max-width: 700px;
-  margin: 0 auto;
-  border-collapse: collapse;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(6px);
-}
-
-.forecast-table th, .forecast-table td {
-  padding: 12px 16px;
-  text-align: center;
-  font-size: 1rem;
-}
-
-.forecast-table thead {
-  background: linear-gradient(90deg, #4facfe, #00f2fe);
-  color: white;
-}
-.forecast-table tbody tr:nth-child(even) {
-  background-color: rgba(240, 248, 255, 0.8);
-}
-
-.forecast-table tbody tr:hover {
-  background-color: rgba(173, 216, 230, 0.4);
-  transform: scale(1.01);
-  transition: 0.2s ease;
-}
-
-.forecast-table td:first-child {
-  font-weight: 600;
-  color: #2c3e50;
-}*/
-
-/* --- Responsive --- */
-/*@media (max-width: 600px) {
-  .forecast-table {
-    font-size: 0.9rem;
-    width: 100%;
-  }
-
-  .forecast-title {
-    font-size: 1.4rem;
-  }
-}*/
 .forecast-section {
   margin-top: 20px;
   display: flex;
@@ -519,6 +469,7 @@ nav {
   letter-spacing: 0.5px;
 }
 
+/* Cells */
 .forecast-table th,
 .forecast-table td {
   padding: 14px 20px;
@@ -527,6 +478,7 @@ nav {
   border-right: 1px dashed rgba(0, 0, 0, 0.1);
 }
 
+/* Cell styles*/
 .forecast-table th:last-child,
 .forecast-table td:last-child {
   border-right: none;
@@ -552,6 +504,7 @@ nav {
   border-bottom: 2px solid #d9eaff;
 }
 
+/* Responsive */
 @media (max-width: 650px) {
   .forecast-table,
   .forecast-table-title {
@@ -651,6 +604,8 @@ nav {
     font-size: 1.1rem;
   }
 }
+
+/* History Section Styling*/
 
 .album {
   margin-top: 70px;

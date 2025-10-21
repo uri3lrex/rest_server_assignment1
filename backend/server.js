@@ -13,6 +13,8 @@ const PORT = 3000; //pls work
 const apiKey = process.env.OPENWEATHER_API_KEY;
 const mapURL = 'https://api.openweathermap.org/data/2.5';
 
+// calling weather API to get current weather data
+
 app.get('/weather/:city', async (req, res) => {
   const city = req.params.city;
   try {
@@ -34,6 +36,8 @@ app.get('/weather/:city', async (req, res) => {
     res.status(500).json({ error: 'Failed to fetch weather data' });
   }
 });
+
+// helper function to get coordinates from city name
 
 async function getCoordinates(city) {
   const geourl = `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${apiKey}`;
@@ -72,6 +76,8 @@ function getClothingAdvice(avgTemp, avgWind, hasRain) {
   return advice.join(". ") + ".";
 }
 
+// Innovative trip advice function
+
 function getTripAdvice(avgTemp, avgWind, hasRain, airQuality) {
   if (hasRain) return "Perfect time to explore indoor attractions like museums or cafes.";
   if (airQuality > 3) return "Air quality isn't great- try indoor spots or short walks.";
@@ -79,6 +85,8 @@ function getTripAdvice(avgTemp, avgWind, hasRain, airQuality) {
   if (avgTemp < 10) return "It's chilly; bundle up for a scenic walk or stay cozy indoors.";
   return "Mild weather — mix of indoor and outdoor plans would work well.";
 }
+
+// Forecast endpoint
 
 app.get('/forecast/:city', async (req,res)=> {
   const city = req.params.city;
@@ -98,6 +106,7 @@ app.get('/forecast/:city', async (req,res)=> {
       const dayWord= day.toISOString().split('T')[0]; 
       const entries = forecastlist.filter(item => item.dt_txt.startsWith(dayWord))
 
+      // calculate average temp, wind, rain for the day within entries and handling zero data
       const temp = entries.length
   ? (entries.reduce((sum, item) => sum + item.main.temp, 0) / entries.length).toFixed(1)
   : 0;
@@ -115,7 +124,7 @@ app.get('/forecast/:city', async (req,res)=> {
 
     }
 
-    // packing??
+    // Packing advice logic
 
     let packing ='';
     const avgTemperature = forecast.reduce((sum,d)=> sum+d.temperature,0)/forecast.length;
@@ -126,7 +135,7 @@ app.get('/forecast/:city', async (req,res)=> {
     else
       packing = 'Hot';
 
-    if(forecast.some(d => d.rain > 0)) packing += ', Bring an umbrella!';
+    if(forecast.slice(0,3).some(d => d.rain > 0)) packing += ', Bring an umbrella!';
 
     const avgWind = forecast.reduce((sum,d)=> sum+d.wind,0)/forecast.length;
     const hasRain = forecast.some(d => d.rain > 0);
@@ -138,7 +147,7 @@ app.get('/forecast/:city', async (req,res)=> {
     const airResponse = await axios.get(airUrl);
     const air = airResponse.data;
     const airData = air.list[0].main.aqi;
-    const components = air.list[0].components;
+    //const components = air.list[0].components;
 
     const aqidesc = {
       1: 'Good',
@@ -148,7 +157,7 @@ app.get('/forecast/:city', async (req,res)=> {
       5: 'Very Poor'
     }[airData];
 
-    const tripAdvice = getTripAdvice(avgTemperature,avgWind,hasRain,airData); //aqidesc doesn't work for some reason. will check.
+    const tripAdvice = getTripAdvice(avgTemperature,avgWind,hasRain,airData); 
 
     res.json({
       city: city,
@@ -206,6 +215,8 @@ app.get('/forecast/:city', async (req,res)=> {
     res.status(500).json({ error: 'Failed to fetch air pollution data' });
   }
 })*/
+
+// Start the server and test endpoints
 
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);

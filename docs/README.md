@@ -1,41 +1,30 @@
 # Node.js based REST server with a Vue Front-end using local computing environment
 
 ### Internet Applications: Assignment 1
-- Currently in week 4.
+- Currently in week 6.
 
-## The rough project architecture:
+## The FINAL project architecture:
 
 ```
 weather-app/
 │
 ├── backend/                         ← Node.js REST API (your Express server)
 │   ├── server.js                    ← main server file (handles routes & logic)
-|   ├── test.js                      ← my testing js file when I want to get experimental in the TEST branch
-│   ├── routes/                      ← possible routes??
-│   │   └── weatherRoutes.js         ← not sure
+|   ├── render.js                    ← Vue Frontend Logic
 │   ├── .env                         ← contains my OPENWEATHER_API_KEY
-│   ├── .gitignore                   ← hides .env and node_modules
 │   ├── package.json
 │   ├── package-lock.json
-│   └── node_modules/
 │
 ├── frontend/                        ← Vue.js front-end
-│   ├── src/
-│   │   ├── App.vue                  ← main app wrapper
-│   │   ├── main.js                  ← Vue entry file
-│   │   ├── components/
-│   │   │   ├── WeatherCard.vue      ← shows weather info (city, temp, etc.)
-│   │   │   └── SearchBar.vue        ← input for city name
-│   │   └── services/
-│   │       └── api.js               ← calls my REST API (axios) ??? help???
-│   ├── public/
-│   │   └── client.html
-│   ├── package.json
-│   ├── vite.config.js (or vue.config.js)
-│   └── node_modules/
+│   └── client.html                  ← HTML structure and rendering
+│   └── style.css                    ← CSS designing
 │
 ├── docs/                            ← Documentation for your report
 │   ├── README.md                        ← short project overview & setup map for now.. other docs to be added possibly
+|
+├── node_modules/
+├── prototype/
+├── .gitignore                       ← hides .env and node_modules
 ```
 
 ## Week 4 To-Do List
@@ -48,9 +37,9 @@ weather-app/
 - [x] Packing
 - [x] Temperature
 - [x] Summary table
-- [x] Work on extra features - 2/5
+- [x] Work on extra features - 4/6
 - [x] Style the appp: through Canva for now to have a vision
-- [ ] Update the sketch architecture in final
+- [x] Update the sketch architecture in final
 
 ## Week 5 To-Do List
 - [x] Style the appp: setting up the website through the html/css/js wombocombo
@@ -58,8 +47,15 @@ weather-app/
 - [x] add icons. design icons maybe
 - [x] test latency?? validate JSON output structure
 - [x] Optional stuff
-- [ ] add more comments
-- [ ] Run a manual test flow
+- [x] Run a manual test flow
+
+
+## Week 6 To-Do List
+- [x] Sort out the structure
+- [x] add more comments
+- [x] Clean the code
+- [ ] Sort out doubts
+- [ ] Start working on documentation
 - [ ] Merge to main branch.
 
 ## Deliverables
@@ -86,9 +82,10 @@ weather-app/
 - [x] Fix history section
 - [x] Latency issues while loading cities from history.
 - [x] Issues with time that don't update accordingly- leaving "TODAY" readings slightly wonky. Check tmmr morning. NOT SURE WHETHER TO WORK ON THIS OR NOT.
+- [ ] Check whether or not do they ask the forecast for 3 days or can we show the forecast for 6 days and if so, do we do the flagging of umbrella only at the 3 day mark or the 6 day one.
 
 ## Possible innovations:
-- [ ] INNOVATIVE: Probs use local storage to retain the results of the search.
+- [ ] ~~INNOVATIVE: Probs use local storage to retain the results of the search.~~
 - [x] CREATIVE (week 4 weekend): Add a fun UI with picture changes along with background changes depending on JSON element.
 - [ ] ~~INNOVATIVE: Auto-suggest cities~~
 - [x] INNOVATIVE : Add insights of clothing!!! and maybe trips!!

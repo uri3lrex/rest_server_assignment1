@@ -2,6 +2,7 @@ const TEST_MODE = false; // Set to false when backend is running
 
         new Vue({
             el:'#app',
+            //data properties
             data:{
                 city: '',
                 weather: null,
@@ -10,39 +11,12 @@ const TEST_MODE = false; // Set to false when backend is running
                 activeInfoTab: 'humidity',
                 searchCooldown: false
             },
+            //date handling
             created() {
                 const date = new Date();
                 const parts = date.toString().split(" ");
                 this.currentDate = `${parts[1]} ${parts[2]}, ${parts[3]}`;
             },
-            mounted() {
-                anime({
-                    targets: '#title',
-                    translateY: [-30, 0],
-                    opacity: [0, 1],
-                    easing: 'easeOutElastic(1, .8)',
-                    duration: 1200
-                });
-
-    // Add hover animation to the button
-            const btn = document.getElementById('forecast-btn');
-            btn.addEventListener('mouseenter', () => {
-                anime({
-                    targets: btn,
-                    scale: [1, 1.1],
-                    duration: 200,
-                    easing: 'easeOutSine'
-                });
-            });
-            btn.addEventListener('mouseleave', () => {
-                anime({
-                    targets: btn,
-                    scale: [1.1, 1],
-                    duration: 200,
-                    easing: 'easeOutSine'
-                });
-            });
-        },
 
         computed: {
             wIcon() {
