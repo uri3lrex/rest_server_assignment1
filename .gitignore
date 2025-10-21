@@ -1,4 +1,5 @@
 node_modules/
+prototype/
 
 # Ignore environment files
 .env
