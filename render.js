@@ -95,6 +95,7 @@ const TEST_MODE = false; // Set to false when backend is running
                         const dummyweather = {
                             city: this.city,
                             temperature: 15.5,
+                            feels_like: 14.0,
                             humidity: 82,
                             condition: 'Broken clouds'
                         }

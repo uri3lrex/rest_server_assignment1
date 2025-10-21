@@ -37,6 +37,7 @@
                     </div>
                     <br>
                     <p class="Temp">{{weather.temperature}}°</p>
+                    <p class="feels-like">Feels like: {{weather.feels_like}}°</p>
                     <p class="condition">{{ weather.condition }}</p>
                     <div class="additional-forecast">
                         <div v-if="ForecastData && ForecastData.forecast && ForecastData.forecast.length" class="info-tabs">
@@ -51,11 +52,11 @@
                                 </div>
 
                                 <div v-show="activeInfoTab === 'wind'">
-                                    <p>Wind Speed: <strong>{{ ForecastData.forecast[0].wind }} m/s</strong></p>
+                                    <p>Wind Speed: <strong>{{ weather.current_wind }} m/s</strong></p>
                                 </div>
 
                                 <div v-show="activeInfoTab === 'rain'">
-                                    <p>Rainfall: <strong>{{ ForecastData.forecast[0].rain }} mm</strong></p>
+                                    <p>Rainfall: <strong>{{ weather.current_rain }} mm</strong></p>
                                 </div>
                             </div>
                         </div>
@@ -104,7 +105,7 @@
                 <thead>
                     <tr>
           <th>Day</th>
-          <th>Temperature (°C)</th>
+          <th>Avg. Temperature (°C)</th>
           <th>Wind Speed (m/s)</th>
           <th>Rainfall (mm)</th>
         </tr>

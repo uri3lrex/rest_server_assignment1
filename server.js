@@ -23,7 +23,10 @@ app.get('/weather/:city', async (req, res) => {
     res.json({
       city: weather.name,
       temperature: weather.main.temp,
+      feels_like: weather.main.feels_like,
       humidity: weather.main.humidity,
+      current_wind: weather.wind.speed,
+      current_rain: weather.rain ? weather.rain['1h'] || 0 : 0,
       condition: weather.weather[0].description,
     });
   } catch (error) {
@@ -99,7 +102,7 @@ app.get('/forecast/:city', async (req,res)=> {
   ? (entries.reduce((sum, item) => sum + item.main.temp, 0) / entries.length).toFixed(1)
   : 0;
       const wind = entries.length
-  ? (entries.reduce((sum, item) => sum + item.main.temp, 0) / entries.length).toFixed(1)
+  ? (entries.reduce((sum, item) => sum + item.wind.speed, 0) / entries.length).toFixed(1)
   : 0;
       const rain = entries.reduce((sum,item) => sum + (item.rain?.['3h'] || 0), 0).toFixed(1);
 

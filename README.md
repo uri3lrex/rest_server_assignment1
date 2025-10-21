@@ -56,7 +56,7 @@ weather-app/
 - [x] Style the appp: setting up the website through the html/css/js wombocombo
 - [x] Try to handle errors and edge cases
 - [x] add icons. design icons maybe
-- [ ] test latency?? validate JSON output structure
+- [x] test latency?? validate JSON output structure
 - [x] Optional stuff
 - [ ] add more comments
 - [ ] Run a manual test flow
@@ -82,10 +82,10 @@ weather-app/
 - Google API is too costly.~~
 - [ ] ~~Can't seem to run the Nominatim API. probs split the branch and figure it out in week 5~~
 - [x] Not able to print daily stats from the weather endpoint
-- [ ] Prevent the immediate repeat of city searches. basically checking the entry before and making sure the one before or the one being currently displayed doesn't allow for repeat of the city (JUST BEFORE).
+- [x] Prevent the immediate repeat of city searches. basically checking the entry before and making sure the one before or the one being currently displayed doesn't allow for repeat of the city (JUST BEFORE).
 - [x] Fix history section
 - [x] Latency issues while loading cities from history.
-- [ ] Issues with time that don't update accordingly- leaving "TODAY" readings slightly wonky. Check tmmr morning. NOT SURE WHETHER TO WORK ON THIS OR NOT.
+- [x] Issues with time that don't update accordingly- leaving "TODAY" readings slightly wonky. Check tmmr morning. NOT SURE WHETHER TO WORK ON THIS OR NOT.
 
 ## Possible innovations:
 - [ ] INNOVATIVE: Probs use local storage to retain the results of the search.
