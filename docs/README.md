@@ -13,14 +13,14 @@ weather-app/
 |   ├── render.js                    ← Vue Frontend Logic
 │   ├── .env                         ← contains my OPENWEATHER_API_KEY
 │   ├── package.json
-│   ├── package-lock.json
+│   └── package-lock.json
 │
 ├── frontend/                        ← Vue.js front-end
-│   └── client.html                  ← HTML structure and rendering
+│   ├── client.html                  ← HTML structure and rendering
 │   └── style.css                    ← CSS designing
 │
-├── docs/                            ← Documentation for your report
-│   ├── README.md                        ← short project overview & setup map for now.. other docs to be added possibly
+├── docs/                            ← Documentation for the report
+│   └── README.md                    ← short project overview & setup map for now.. other docs to be added possibly
 |
 ├── node_modules/
 ├── prototype/
@@ -49,12 +49,11 @@ weather-app/
 - [x] Optional stuff
 - [x] Run a manual test flow
 
-
 ## Week 6 To-Do List
 - [x] Sort out the structure
 - [x] add more comments
 - [x] Clean the code
-- [ ] Sort out doubts
+- [x] Sort out doubts
 - [ ] Start working on documentation
 - [ ] Merge to main branch.
 
@@ -82,7 +81,7 @@ weather-app/
 - [x] Fix history section
 - [x] Latency issues while loading cities from history.
 - [x] Issues with time that don't update accordingly- leaving "TODAY" readings slightly wonky. Check tmmr morning. NOT SURE WHETHER TO WORK ON THIS OR NOT.
-- [ ] Check whether or not do they ask the forecast for 3 days or can we show the forecast for 6 days and if so, do we do the flagging of umbrella only at the 3 day mark or the 6 day one.
+- [x] Check whether or not do they ask the forecast for 3 days or can we show the forecast for 6 days and if so, do we do the flagging of umbrella only at the 3 day mark or the 6 day one.
 
 ## Possible innovations:
 - [ ] ~~INNOVATIVE: Probs use local storage to retain the results of the search.~~
