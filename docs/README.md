@@ -54,8 +54,8 @@ weather-app/
 - [x] add more comments
 - [x] Clean the code
 - [x] Sort out doubts
-- [ ] Start working on documentation
-- [ ] Merge to main branch.
+- [x] Start working on documentation
+- [x] Merge to main branch.
 
 ## Deliverables
 - [x] Shows current day weather
