@@ -1,41 +1,30 @@
 # Node.js based REST server with a Vue Front-end using local computing environment
 
 ### Internet Applications: Assignment 1
-- Currently in week 4.
+- Currently in week 6.
 
-## The rough project architecture:
+## The FINAL project architecture:
 
 ```
 weather-app/
 │
 ├── backend/                         ← Node.js REST API (your Express server)
 │   ├── server.js                    ← main server file (handles routes & logic)
-|   ├── test.js                      ← my testing js file when I want to get experimental in the TEST branch
-│   ├── routes/                      ← possible routes??
-│   │   └── weatherRoutes.js         ← not sure
+|   ├── render.js                    ← Vue Frontend Logic
 │   ├── .env                         ← contains my OPENWEATHER_API_KEY
-│   ├── .gitignore                   ← hides .env and node_modules
 │   ├── package.json
-│   ├── package-lock.json
-│   └── node_modules/
+│   └── package-lock.json
 │
 ├── frontend/                        ← Vue.js front-end
-│   ├── src/
-│   │   ├── App.vue                  ← main app wrapper
-│   │   ├── main.js                  ← Vue entry file
-│   │   ├── components/
-│   │   │   ├── WeatherCard.vue      ← shows weather info (city, temp, etc.)
-│   │   │   └── SearchBar.vue        ← input for city name
-│   │   └── services/
-│   │       └── api.js               ← calls my REST API (axios) ??? help???
-│   ├── public/
-│   │   └── client.html
-│   ├── package.json
-│   ├── vite.config.js (or vue.config.js)
-│   └── node_modules/
+│   ├── client.html                  ← HTML structure and rendering
+│   └── style.css                    ← CSS designing
 │
-├── docs/                            ← Documentation for your report
-│   ├── README.md                        ← short project overview & setup map for now.. other docs to be added possibly
+├── docs/                            ← Documentation for the report
+│   └── README.md                    ← short project overview & setup map for now.. other docs to be added possibly
+|
+├── node_modules/
+├── prototype/
+├── .gitignore                       ← hides .env and node_modules
 ```
 
 ## Week 4 To-Do List
@@ -48,20 +37,29 @@ weather-app/
 - [x] Packing
 - [x] Temperature
 - [x] Summary table
-- [ ] Style the appp: setting up the website through the html/css/js wombocombo
-- [ ] Update the sketch architecture in final
+- [x] Work on extra features - 4/6
+- [x] Style the appp: through Canva for now to have a vision
+- [x] Update the sketch architecture in final
 
 ## Week 5 To-Do List
-- [ ] Try to handle errors and edge cases
-- [ ] add icons. design icons maybe
-- [ ] test latency?? validate JSON output structure
-- [ ] Optional stuff
-- [ ] add more comments
-- [ ] Run a manual test flow
+- [x] Style the appp: setting up the website through the html/css/js wombocombo
+- [x] Try to handle errors and edge cases
+- [x] add icons. design icons maybe
+- [x] test latency?? validate JSON output structure
+- [x] Optional stuff
+- [x] Run a manual test flow
+
+## Week 6 To-Do List
+- [x] Sort out the structure
+- [x] add more comments
+- [x] Clean the code
+- [x] Sort out doubts
+- [ ] Start working on documentation
+- [ ] Merge to main branch.
 
 ## Deliverables
 - [x] Shows current day weather
-- [x] To be done by week 4: Shows forecast of the next 3 day (updated to 5 days)
+- [x] To be done by week 4: Shows forecast of the next 3 day ~~(updated to 5 days)~~ (keeping it today + next 3 days)
 - [x] To be done by Week 4: Packing which shows that you should get an umbrella if its gonna rain in the forecast.
 - [x] To be done by Week 4: A temperature systems which shows whether that the user should pack for Cold (temperatures below 8C), Mild (temperatures from 8C to 24C inclusive) or Hot (temperatures above 24C)
 - [x] Give a summary table for the next 3 days showing: Temperature, Wind Speed and Rainfall level.
@@ -75,12 +73,23 @@ weather-app/
 - **Prototype**: Will possibly hold the most functional copy of my final product and a test_2 grounds.
 
 ## Problems:
-- [x] Ask whether returning "Mountjoy" when you type "Dublin" is okay or like- do we have to be super precise cause then I might not pass the geo coordindates in that and use that only for air pollution API.
+- [x] ~~Ask whether returning "Mountjoy" when you type "Dublin" is okay or like- do we have to be super precise cause then I might not pass the geo coordindates in that and use that only for air pollution API.~~
+- [ ] ~~Google API is too costly.~~
+- [ ] ~~Can't seem to run the Nominatim API. probs split the branch and figure it out in week 5~~
+- [x] Not able to print daily stats from the weather endpoint
+- [x] Prevent the immediate repeat of city searches. basically checking the entry before and making sure the one before or the one being currently displayed doesn't allow for repeat of the city (JUST BEFORE).
+- [x] Fix history section
+- [x] Latency issues while loading cities from history.
+- [x] Issues with time that don't update accordingly- leaving "TODAY" readings slightly wonky. Check tmmr morning. NOT SURE WHETHER TO WORK ON THIS OR NOT.
+- [x] Check whether or not do they ask the forecast for 3 days or can we show the forecast for 6 days and if so, do we do the flagging of umbrella only at the 3 day mark or the 6 day one.
 
 ## Possible innovations:
-- [ ] INNOVATIVE: Probs use local storage to retain the results of the search.
-- [ ] CREATIVE (week 4 weekend): Add a fun UI with picture changes
-- [ ] INNOVATIVE: Auto-suggest cities
+- [ ] ~~INNOVATIVE: Probs use local storage to retain the results of the search.~~
+- [x] CREATIVE (week 4 weekend): Add a fun UI with picture changes along with background changes depending on JSON element.
+- [ ] ~~INNOVATIVE: Auto-suggest cities~~
+- [x] INNOVATIVE : Add insights of clothing!!! and maybe trips!!
+- [x] INNOVATIVE: Adding a date!
+- [x] INNOVATIVE: Clickable history data.
 
 ## Documentation: 
 
@@ -91,3 +100,8 @@ weather-app/
 - [NPM Axios install](https://www.npmjs.com/package/axios)
 - [Vue documentation](https://vuejs.org/guide/introduction.html)
 - [Vue.js directives](https://vueschool.io/articles/vuejs-tutorials/vue-js-directives-a-beginners-guide/)
+- ~~[Auto-suggesting places using Google API](https://youtu.be/Z4mSBypzQsI)~~
+- [Nominatim API for auto suggest](https://nominatim.org/release-docs/latest/api/Overview/)
+- [For animation](https://animejs.com/documentation/getting-started/module-imports)
+- [Fonts used](https://fonts.google.com/selection/embed)
+- [Font awesome](https://fontawesome.com/v4/)

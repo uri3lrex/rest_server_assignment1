@@ -13,17 +13,22 @@ const PORT = 3000; //pls work
 const apiKey = process.env.OPENWEATHER_API_KEY;
 const mapURL = 'https://api.openweathermap.org/data/2.5';
 
+// calling weather API to get current weather data
+
 app.get('/weather/:city', async (req, res) => {
   const city = req.params.city;
   try {
     const url = `${mapURL}/weather?q=${city}&appid=${apiKey}&units=metric`;
-    const response = await axios.get(url);
-    const weather = response.data;
+    const todayresponse = await axios.get(url);
+    const weather = todayresponse.data;
 
     res.json({
       city: weather.name,
       temperature: weather.main.temp,
+      feels_like: weather.main.feels_like,
       humidity: weather.main.humidity,
+      current_wind: weather.wind.speed,
+      current_rain: weather.rain ? weather.rain['1h'] || 0 : 0,
       condition: weather.weather[0].description,
     });
   } catch (error) {
@@ -31,6 +36,8 @@ app.get('/weather/:city', async (req, res) => {
     res.status(500).json({ error: 'Failed to fetch weather data' });
   }
 });
+
+// helper function to get coordinates from city name
 
 async function getCoordinates(city) {
   const geourl = `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${apiKey}`;
@@ -48,6 +55,39 @@ async function getCoordinates(city) {
   
 }
 
+// INNOVATIVE : Add insights of clothing!!! and maybe trips!!
+
+function getClothingAdvice(avgTemp, avgWind, hasRain) {
+  let advice = [];
+
+  // Temperature-based 
+  if (avgTemp < 5) advice.push("Wear a heavy coat or puffer jacket");
+  else if (avgTemp < 12) advice.push("Wear a jacket or layered clothing");
+  else if (avgTemp < 20) advice.push("Light jacket or long sleeves should do");
+  else advice.push("T-shirt weather! Stay cool and hydrated");
+
+  // Wind-based 
+  if (avgWind > 8) advice.push("It's quite windy - a windbreaker or scarf helps");
+  else if (avgWind > 4) advice.push("Mild breeze, so light layers work fine");
+
+  // Rain-based 
+  if (hasRain) advice.push("Bring an umbrella or waterproof jacket");
+
+  return advice.join(". ") + ".";
+}
+
+// Innovative trip advice function
+
+function getTripAdvice(avgTemp, avgWind, hasRain, airQuality) {
+  if (hasRain) return "Perfect time to explore indoor attractions like museums or cafes.";
+  if (airQuality > 3) return "Air quality isn't great- try indoor spots or short walks.";
+  if (avgTemp >= 15 && avgWind < 5) return "Great day for outdoor activities- maybe parks, sightseeing, or hiking!";
+  if (avgTemp < 10) return "It's chilly; bundle up for a scenic walk or stay cozy indoors.";
+  return "Mild weather — mix of indoor and outdoor plans would work well.";
+}
+
+// Forecast endpoint
+
 app.get('/forecast/:city', async (req,res)=> {
   const city = req.params.city;
   try {
@@ -57,6 +97,7 @@ app.get('/forecast/:city', async (req,res)=> {
     const forecastlist = response.data.list;
 
     const forecast = [];
+    // setting up today's weather 
     const today = new Date();
     for (let i=0; i<6;i++){
       const day = new Date(today);
@@ -64,8 +105,13 @@ app.get('/forecast/:city', async (req,res)=> {
       const dayWord= day.toISOString().split('T')[0]; 
       const entries = forecastlist.filter(item => item.dt_txt.startsWith(dayWord))
 
-      const temp = (entries.reduce((sum,item) => sum + item.main.temp,0)/entries.length).toFixed(1);
-      const wind = (entries.reduce((sum,item) => sum + item.wind.speed,0)/entries.length).toFixed(1);
+      // calculate average temp, wind, rain for the day within entries and handling zero data
+      const temp = entries.length
+  ? (entries.reduce((sum, item) => sum + item.main.temp, 0) / entries.length).toFixed(1)
+  : 0;
+      const wind = entries.length
+  ? (entries.reduce((sum, item) => sum + item.wind.speed, 0) / entries.length).toFixed(1)
+  : 0;
       const rain = entries.reduce((sum,item) => sum + (item.rain?.['3h'] || 0), 0).toFixed(1);
 
       forecast.push({
@@ -77,7 +123,7 @@ app.get('/forecast/:city', async (req,res)=> {
 
     }
 
-    // packing??
+    // Packing advice logic
 
     let packing ='';
     const avgTemperature = forecast.reduce((sum,d)=> sum+d.temperature,0)/forecast.length;
@@ -88,13 +134,19 @@ app.get('/forecast/:city', async (req,res)=> {
     else
       packing = 'Hot';
 
-    if(forecast.some(d => d.rain > 0)) packing += ', Bring an umbrella!';
+    if(forecast.slice(0,3).some(d => d.rain > 0)) packing += ', Bring an umbrella!';
+
+    const avgWind = forecast.reduce((sum,d)=> sum+d.wind,0)/forecast.length;
+    const hasRain = forecast.some(d => d.rain > 0);
+
+    const clothingAdvice = getClothingAdvice(avgTemperature, avgWind, hasRain);
+
 
     const airUrl = `http://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${apiKey}`;
     const airResponse = await axios.get(airUrl);
     const air = airResponse.data;
     const airData = air.list[0].main.aqi;
-    const components = air.list[0].components;
+    //const components = air.list[0].components;
 
     const aqidesc = {
       1: 'Good',
@@ -104,9 +156,13 @@ app.get('/forecast/:city', async (req,res)=> {
       5: 'Very Poor'
     }[airData];
 
+    const tripAdvice = getTripAdvice(avgTemperature,avgWind,hasRain,airData); 
+
     res.json({
       city: city,
       packingAdvice: packing, forecast,
+      clothing: clothingAdvice,
+      trip: tripAdvice,
       airPollution: aqidesc
   });
 
@@ -159,9 +215,12 @@ app.get('/forecast/:city', async (req,res)=> {
   }
 })*/
 
+// Start the server and test endpoints
+
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
   console.log(`Try: http://localhost:${PORT}/weather/Dublin`);
+  console.log(`Try: http://localhost:${PORT}/forecast/Dublin`);
   console.log(`Try: http://localhost:${PORT}/air_pollution/Dublin`);
   
 });
