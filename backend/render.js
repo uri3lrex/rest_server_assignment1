@@ -19,6 +19,7 @@ const TEST_MODE = false; // Set to false when backend is running
             },
 
         computed: {
+            // handling weather icons and background classes
             wIcon() {
                 if (!this.weather) return 'fa-solid fa-cloud';
                 const condition = this.weather.condition.toLowerCase();
@@ -39,6 +40,7 @@ const TEST_MODE = false; // Set to false when backend is running
             }
         },
             methods: {
+                // Fetch forecast data from backend
                 async getForecast(){
                      if (this.searchCooldown) {
                         alert("Please wait a few seconds before searching again!");
@@ -46,11 +48,14 @@ const TEST_MODE = false; // Set to false when backend is running
                     }
                     if (!this.city) return alert('Please enter a VALID city name!');
 
+                    // set cooldown to prevent rapid searches
+
                     this.searchCooldown = true;
                     setTimeout(() => {
                         this.searchCooldown = false;
                     }, 2000);
-
+                    
+                    // Use dummy data in test mode
                      if (TEST_MODE) {
                         console.log("-> Using dummy data (backend not running).");
                         const dummyData = {
